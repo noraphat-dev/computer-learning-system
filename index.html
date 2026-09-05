@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#111315" />
+    <meta name="description" content="Computer Learning System — ระบบการเรียนรู้คอมพิวเตอร์ส่วนบุคคล" />
+    <title>Computer Learning System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="boot-screen" id="boot-screen" role="status" aria-live="polite">
+      <span class="boot-mark" aria-hidden="true"></span>
+      <span>INITIALIZING LEARNING SYSTEM</span>
+    </div>
+
+    <div class="app-shell">
+      <header class="site-header">
+        <a class="wordmark" href="#introduction" data-route="introduction" aria-label="ไปยังหน้า Introduction">CLS//KNOWLEDGE_MAP</a>
+        <nav class="main-nav" aria-label="การนำทางหลัก">
+          <a href="#introduction" data-route="introduction">INTRODUCTION</a>
+          <a href="#skill-tree" data-route="skill-tree">SKILL TREE</a>
+        </nav>
+      </header>
+      <main id="app-root" tabindex="-1"></main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
