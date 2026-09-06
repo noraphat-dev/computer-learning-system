@@ -198,96 +198,96 @@ const assemblySkillContent = {
     topic('Preparation', [
       'ตรวจอุปกรณ์ให้ครบและตรวจ Compatibility เช่น CPU กับ Motherboard, RAM กับระบบ,',
       'GPU กับ Case และ PSU กับกำลังไฟที่ต้องใช้'
-    ])
+    ].join("\n"))
   ],
   'safety-esd': [
     topic('Safety / ESD', [
       'ปิดเครื่องและถอดไฟ จับอุปกรณ์บริเวณขอบ ระวังไฟฟ้าสถิต และไม่ฝืนใส่อุปกรณ์',
       'หากตำแหน่งไม่ตรงให้หยุดตรวจ'
-    ])
+    ].join("\n"))
   ],
   'components': [
     topic('Components', [
       'เตรียม CPU, Cooler, RAM, Storage, Motherboard, PSU, GPU, Case และสายต่าง ๆ'
-    ])
+    ].join("\n"))
   ],
   'cpu': [
     topic('CPU', [
       'วาง CPU ให้ตรงเครื่องหมายบน Socket และล็อกกลไกให้ถูกต้อง'
-    ])
+    ].join("\n"))
   ],
   'cooler': [
     topic('Cooler', [
       'ติดตั้ง Cooler ให้แน่นพอดี ใช้ Thermal Paste และต่อ CPU_FAN'
-    ])
+    ].join("\n"))
   ],
   'ram': [
     topic('RAM', [
       'ใส่ RAM ลง Slot ที่ถูกต้องจน Lock'
-    ])
+    ].join("\n"))
   ],
   'storage': [
     topic('Storage', [
       'ติดตั้ง M.2 หรือ SATA ตามชนิด Storage'
-    ])
+    ].join("\n"))
   ],
   'motherboard': [
     topic('Motherboard', [
       'ตรวจ I/O Shield ถ้าจำเป็น ตรวจ Standoff แล้ววางและขัน Motherboard ให้ถูกตำแหน่ง'
-    ])
+    ].join("\n"))
   ],
   'psu': [
     topic('PSU', [
       'ยึด PSU และจัดสายเพื่อเตรียมเชื่อมต่อ'
-    ])
+    ].join("\n"))
   ],
   'gpu': [
     topic('GPU', [
       'ใส่ GPU ลง PCIe Slot ยึด Case และต่อ Power หากจำเป็น'
-    ])
+    ].join("\n"))
   ],
   'power-connector': [
     topic('Power Connector', [
       'ต้องรู้จัก 24-pin Motherboard, CPU Power, GPU Power และ SATA Power'
-    ])
+    ].join("\n"))
   ],
   'front-panel': [
     topic('Front Panel', [
       'ต่อ Power Switch, Reset Switch, Power LED และ HDD LED ตามคู่มือ Motherboard'
-    ])
+    ].join("\n"))
   ],
   'cable-management': [
     topic('Cable Management', [
       'จัดสายไม่ให้ขวางพัดลมและ Airflow และไม่ดึง Connector จนตึง'
-    ])
+    ].join("\n"))
   ],
   'pre-power-check': [
     topic('Pre-Power Check', [
       'ตรวจสายไฟ, 24-pin, CPU Power, RAM/GPU Lock, Cooler, Storage, Front',
       'Panel, Monitor และตรวจว่าไม่มีสกรูหรือโลหะหลงอยู่'
-    ])
+    ].join("\n"))
   ],
   'first-boot': [
     topic('First Boot', [
       'เปิดเครื่องและสังเกตพัดลม ไฟ/เสียง ภาพ และการเข้า BIOS/UEFI'
-    ])
+    ].join("\n"))
   ],
   'bios-uefi': [
     topic('BIOS / UEFI', [
       'ตรวจ CPU, RAM, Storage และ Boot Device'
-    ])
+    ].join("\n"))
   ],
   'post-build-verification': [
     topic('Post-Build Verification', [
       'หลังติดตั้ง Windows ตรวจ Device Manager, RAM, Storage, Network, USB, Audio',
       'และ Display แล้วทดสอบจริง'
-    ])
+    ].join("\n"))
   ],
   'no-boot': [
     topic('ถ้าไม่ Boot', [
       'ตรวจตามลำดับ Power → PSU → 24-pin/CPU Power → RAM → GPU → Front Panel →',
       'BIOS/UEFI → อุปกรณ์ทีละชิ้น'
-    ])
+    ].join("\n"))
   ],
 };
 
@@ -313,6 +313,356 @@ const assemblySkills = createSkills('assembly', [
 ]);
 
 
+const maintenanceSkillContent = {
+  'Inspection ก่อนลงมือ': [
+    topic('Inspection ก่อนลงมือ', [
+      'ก่อนถอดหรือเปลี่ยนอะไร ให้ตรวจสภาพเครื่องก่อน',
+      '',
+      '- **ภายนอก:** ฝุ่น รอยแตก พอร์ต สาย และอุปกรณ์ที่หลวม',
+      '- **ภายใน:** ฝุ่นตามพัดลม/Heatsink, สายหลวม, Connector, RAM/GPU, Storage และรอยไหม้',
+      '- **การทำงาน:** เสียงผิดปกติ ความร้อน การดับ/Restart และอาการที่ผู้ใช้พบ',
+      '- **Software ที่ช่วยตรวจ:** BIOS/UEFI, Device Manager, Disk Management และเครื่องมือดูอุณหภูมิ/สุขภาพอุปกรณ์ตามความเหมาะสม',
+      '',
+      'หลักคิดคือ **ตรวจจากสิ่งง่ายและปลอดภัยก่อน แล้วค่อยถอดอุปกรณ์เมื่อมีเหตุผล**'
+    ].join("\n")),
+  ],
+  'Cleaning': [
+    topic('กฎความปลอดภัย', [
+      '1. ปิดเครื่อง',
+      '2. ถอดปลั๊กหรือแหล่งจ่ายไฟ',
+      '3. ถ้าเป็น Notebook ให้ปิดเครื่องและตัด Battery/Power ตามวิธีของรุ่นนั้น',
+      '4. ใช้ลมเป่าหรือแปรงนุ่มสำหรับฝุ่น และใช้ผ้าแห้ง/วัสดุที่เหมาะสมกับพื้นผิว',
+      '5. ระวังไม่ให้ความชื้นเข้าอุปกรณ์',
+      '6. ถ้าใช้ลมกับพัดลม ให้ยึดใบพัดไม่ให้หมุนเร็วเกินไป'
+    ].join("\n")),
+    topic('ทำความสะอาดตามชิ้นส่วน', [
+      '**Case**',
+      '- เป่าฝุ่นจากช่องลมและตะแกรง',
+      '- เช็ดฝุ่นตามพื้นผิวและกรองฝุ่น',
+      '- ตรวจว่าช่องลมไม่ถูกบัง',
+      '',
+      '**CPU Cooler**',
+      '- เป่าฝุ่นจาก Heatsink และพัดลม',
+      '- ยึดใบพัดไม่ให้หมุนจากแรงลม',
+      '- ถ้าถอด Cooler ออกจาก CPU ต้องพิจารณาเปลี่ยน Thermal Paste ก่อนประกอบกลับ',
+      '',
+      '**GPU**',
+      '- เป่าฝุ่นบริเวณพัดลมและ Heatsink',
+      '- ตรวจว่าพัดลมหมุนได้ปกติ',
+      '- ไม่ใช้น้ำหรือของเหลวกับตัวการ์ด',
+      '',
+      '**PSU**',
+      '- ทำความสะอาดบริเวณภายนอกและช่องระบายอากาศ',
+      '- ไม่เปิดฝา PSU เพื่อทำความสะอาดภายใน เพราะยังอาจมีประจุไฟฟ้าและเป็นส่วนที่ไม่ควรซ่อมเอง',
+      '',
+      '**Motherboard**',
+      '- เป่าฝุ่นเบา ๆ รอบ Slot, Connector และ Heatsink',
+      '- ตรวจรอยไหม้ บวม แตก หรือสิ่งแปลกปลอม',
+      '',
+      '**RAM**',
+      '- ปิดเครื่องและถอด RAM ก่อนทำความสะอาด',
+      '- เป่าฝุ่นที่ Slot และตัว RAM อย่างระมัดระวัง',
+      '- ใส่กลับให้ Lock ครบทั้งสองด้าน',
+      '',
+      '**HDD / SSD**',
+      '- ทำความสะอาดบริเวณรอบ Drive และ Connector',
+      '- ตรวจสาย SATA หรือจุดยึด',
+      '- หลีกเลี่ยงการกระแทก โดยเฉพาะ HDD ที่มีชิ้นส่วนเคลื่อนไหว',
+      '',
+      '**Monitor**',
+      '- ปิดจอและถอดไฟ',
+      '- ใช้ผ้านุ่มที่เหมาะกับหน้าจอ',
+      '- ไม่ฉีดน้ำยาลงบนจอโดยตรง',
+      '',
+      '**Keyboard**',
+      '- ปิด/ถอดการเชื่อมต่อ',
+      '- เคาะหรือเป่าฝุ่นอย่างระมัดระวัง',
+      '- เช็ดพื้นผิวและบริเวณปุ่ม',
+      '',
+      '**Mouse**',
+      '- เช็ดตัวเมาส์',
+      '- ทำความสะอาด Sensor และตรวจว่าพื้นผิวที่ใช้ไม่สกปรกเกินไป',
+      '',
+      '**Notebook**',
+      '- ระวังฝาครอบ Flex Connector และสายแพ',
+      '- ไม่ฝืนงัดชิ้นส่วน เพราะ Clip และ Connector แตกได้ง่าย'
+    ].join("\n")),
+  ],
+  'Cables / Connectors': [
+    topic('Cables / Connectors', [
+      'สายหลวมทำให้เกิดอาการที่ดูเหมือนอุปกรณ์เสียได้ เช่น No Display, Storage ไม่พบ หรืออุปกรณ์ไม่ทำงาน',
+      '',
+      'ตรวจ:',
+      '- 24-pin Motherboard',
+      '- CPU Power',
+      '- GPU Power',
+      '- SATA Data / SATA Power',
+      '- Front Panel',
+      '- USB และ Display Cable',
+      '- Notebook Flex/Connector',
+      '',
+      'หลักการคือ **ถอด-เสียบใหม่เฉพาะจุดที่สงสัย และต้องแน่ใจว่าต่อถูกช่อง**'
+    ].join("\n")),
+  ],
+  'RAM': [
+    topic('RAM', [
+      'อาการที่เกี่ยวข้อง: No Boot, No Display, ค้าง, Restart',
+      '',
+      'วิธีตรวจ:',
+      '1. ปิดเครื่องและถอดไฟ',
+      '2. ถอด RAM และตรวจ Slot',
+      '3. ใส่กลับให้ Lock',
+      '4. ถ้ามีหลายแถว ทดลองทีละแถว',
+      '5. ทดลอง Slot ที่คู่มือกำหนด',
+      '6. เมื่อเครื่องบูตได้ ให้ใช้ Memory Test หากจำเป็น',
+      '',
+      'การทดสอบทีละแถวช่วยแยกได้ว่าอาการมาจาก RAM, Slot หรือการติดตั้ง'
+    ].join("\n")),
+  ],
+  'Storage': [
+    topic('Storage', [
+      'ถ้า Drive ไม่พบ:',
+      '1. ตรวจสาย/การติดตั้ง',
+      '2. ตรวจ BIOS/UEFI',
+      '3. ถ้า BIOS เห็นแต่ Windows ไม่เห็น ให้ตรวจ Disk Management',
+      '4. ตรวจ Partition และสถานะ Drive',
+      '5. ตรวจสุขภาพ Storage เมื่อมีอาการช้า ค้าง หรือเสียงผิดปกติ',
+      '',
+      'อย่ารีบ Format เพราะการ Format อาจทำให้ข้อมูลหาย'
+    ].join("\n")),
+  ],
+  'CPU / Cooler': [
+    topic('CPU / Cooler', [
+      'ตรวจ:',
+      '- พัดลม/ปั๊มทำงานหรือไม่',
+      '- ฝุ่นอุดตันหรือไม่',
+      '- Cooler ยึดแน่นหรือไม่',
+      '- Thermal Paste อยู่ในสภาพเหมาะสมหรือไม่',
+      '- Airflow ของ Case ดีหรือไม่',
+      '- อุณหภูมิสูงผิดปกติหรือไม่',
+      '',
+      'ถ้า CPU ร้อนผิดปกติ ให้ตรวจจาก **พัดลม → ฝุ่น → การยึด Cooler → Thermal Paste → Airflow** ก่อนสรุปว่า CPU เสีย'
+    ].join("\n")),
+  ],
+  'GPU': [
+    topic('GPU', [
+      'ตรวจ:',
+      '- การ์ดเสียบ PCIe แน่นหรือไม่',
+      '- GPU Power ต่อครบหรือไม่',
+      '- Display Cable ต่อพอร์ตถูกหรือไม่',
+      '- Driver ปกติหรือไม่',
+      '- อุณหภูมิและพัดลมผิดปกติหรือไม่',
+      '',
+      'ถ้าจะเปลี่ยน GPU ต้องดู **PCIe, ขนาดการ์ด, PSU, Power Connector, CPU และพอร์ตจอ**'
+    ].join("\n")),
+  ],
+  'PSU': [
+    topic('PSU', [
+      'ตรวจ:',
+      '- ปลั๊กและ Power Cable',
+      '- PSU Switch',
+      '- 24-pin',
+      '- CPU Power',
+      '- GPU Power',
+      '- อาการดับ/Restart โดยเฉพาะตอนโหลดสูง',
+      '',
+      'ถ้าสงสัย PSU เสีย ควรใช้เครื่องมือทดสอบหรือให้ผู้มีความรู้ตรวจ **ไม่ควรเปิด PSU เอง**'
+    ].join("\n")),
+  ],
+  'Motherboard': [
+    topic('Motherboard', [
+      'ตรวจ:',
+      '- Slot และ Connector',
+      '- ฝุ่น',
+      '- Error Indicator/Debug LED ถ้ามี',
+      '- BIOS/UEFI',
+      '- การตรวจพบ CPU, RAM และ Storage',
+      '- รอยไหม้ บวม แตก หรือความเสียหายทางกายภาพ',
+      '',
+      'ถ้าอุปกรณ์หลายตัวผิดปกติพร้อมกัน ให้พิจารณา Motherboard หรือ PSU เป็นหนึ่งในสาเหตุ แต่ต้องมีหลักฐานก่อนเปลี่ยน'
+    ].join("\n")),
+  ],
+  'Monitor': [
+    topic('Monitor', [
+      'ตรวจตามลำดับ:',
+      '**Power → Input Source → Display Cable → Port → GPU/Integrated Graphics → Monitor**',
+      '',
+      'ถ้าจะเปลี่ยนจอ ดู:',
+      '- ขนาด',
+      '- Resolution',
+      '- Refresh Rate',
+      '- Panel',
+      '- Ports',
+      '- ความสามารถของ GPU ที่จะส่งภาพ'
+    ].join("\n")),
+  ],
+  'Keyboard / Mouse': [
+    topic('Keyboard / Mouse', [
+      '**Keyboard:** ตรวจ USB/Bluetooth/Receiver, Battery, Port, Driver และทดลองเครื่องอื่น',
+      '',
+      '**Mouse:** ตรวจสาย/Receiver/Bluetooth, Battery, Sensor, พื้นผิว และทดลองเครื่องอื่น',
+      '',
+      'เริ่มจาก Connection ก่อน เพราะเป็นสาเหตุที่ตรวจได้ง่ายและไม่ต้องรื้อเครื่อง'
+    ].join("\n")),
+  ],
+  'Notebook Hardware': [
+    topic('Notebook Hardware', [
+      'Notebook ต้องระวัง:',
+      '- Battery',
+      '- Flex Cable',
+      '- Connector',
+      '- สายลำโพง/จอ/Keyboard',
+      '- ฝาครอบและ Clip',
+      '- สกรูหลายขนาด',
+      '',
+      'ก่อนถอดควรจำตำแหน่งสกรูและ Connector และไม่ฝืนชิ้นส่วนที่ยังล็อกอยู่'
+    ].join("\n")),
+  ],
+  'Replacement': [
+    topic('Replacement', [
+      'ขั้นตอนพื้นฐาน:',
+      '1. ระบุอุปกรณ์ที่มีปัญหา',
+      '2. ตรวจว่าอะไหล่รุ่นใหม่เข้ากันได้',
+      '3. สำรองข้อมูลถ้าเกี่ยวข้องกับ Storage',
+      '4. ปิดเครื่องและตัดไฟ',
+      '5. ถอดอุปกรณ์เดิม',
+      '6. ติดตั้งอุปกรณ์ใหม่',
+      '7. ตรวจ Connector และการยึด',
+      '8. เปิดเครื่องและตรวจ BIOS/UEFI หรือ Windows',
+      '9. ทดสอบการใช้งานจริง'
+    ].join("\n")),
+  ],
+  'Upgrade Hardware': [
+    topic('RAM', [
+      'ก่อนเพิ่ม RAM ต้องดู:',
+      '- Capacity ที่ต้องการ',
+      '- DDR รุ่นที่ Motherboard รองรับ',
+      '- จำนวน Slot ที่เหลือ',
+      '- ความจุสูงสุดที่ระบบรองรับ',
+      '- ความเข้ากันได้ของ Module',
+      '',
+      'ตัวอย่าง: ถ้ามี RAM 8GB และต้องการ 16GB อาจเพิ่มอีก 8GB ได้ แต่ต้องตรวจว่าระบบรองรับ DDR และ Module แบบนั้นก่อน ไม่ใช่เห็นว่า "RAM 8GB" แล้วซื้ออะไรก็ได้',
+      '',
+      '**ขั้นตอน:** ตรวจสเปกเครื่อง → เลือก RAM ที่รองรับ → ปิดเครื่อง → ติดตั้ง → เข้า BIOS/Windows ตรวจความจุ → ทดสอบ'
+    ].join("\n")),
+    topic('Storage: HDD → SSD', [
+      'ดู:',
+      '- SATA หรือ NVMe',
+      '- Form Factor',
+      '- Slot/Port ที่เครื่องรองรับ',
+      '- ความจุ',
+      '- วิธีติดตั้ง Windows หรือย้ายข้อมูล',
+      '',
+      'ถ้าต้องการให้ Windows อยู่บน SSD อาจติดตั้ง Windows ใหม่หรือย้ายระบบเดิมตามวิธีที่เหมาะสม โดยต้องสำรองข้อมูลก่อน'
+    ].join("\n")),
+    topic('SSD เพิ่ม/เปลี่ยน', [
+      'ต้องดู:',
+      '- SATA SSD หรือ NVMe SSD',
+      '- M.2 Slot รองรับ Interface อะไร',
+      '- ขนาด/ความยาวที่รองรับ',
+      '- Capacity',
+      '- การจัดการ Partition หลังติดตั้ง',
+      '',
+      'จำไว้ว่า **M.2 คือรูปแบบทางกายภาพ ไม่ได้แปลว่า M.2 ทุกตัวเป็น NVMe**'
+    ].join("\n")),
+    topic('GPU', [
+      'ก่อน Upgrade ต้องดู:',
+      '- PCIe Slot',
+      '- ขนาด GPU ว่าใส่ Case ได้',
+      '- PSU Wattage',
+      '- Power Connector',
+      '- CPU ว่าเหมาะกับระดับ GPU หรือไม่',
+      '- Monitor และพอร์ตที่ต้องใช้',
+      '- Driver ที่รองรับ',
+      '',
+      '**ขั้นตอน:** ตรวจ Compatibility → ถอด GPU เดิม → ใส่ GPU ใหม่ → ต่อ Power → ต่อจอ → ติดตั้ง/ตรวจ Driver → ทดสอบ'
+    ].join("\n")),
+    topic('CPU', [
+      'ต้องดู:',
+      '- Socket',
+      '- Motherboard Support',
+      '- BIOS/UEFI Support',
+      '- Cooler และความสามารถในการระบายความร้อน',
+      '- PSU และกำลังไฟ',
+      '- การใช้งานที่ต้องการ',
+      '',
+      'CPU ที่แรงกว่าไม่ได้แปลว่าใส่แทนกันได้ เพราะ Socket และ BIOS/UEFI อาจไม่รองรับ'
+    ].join("\n")),
+    topic('CPU Cooler', [
+      'ต้องดู:',
+      '- Socket Compatibility',
+      '- ขนาด Cooler',
+      '- พื้นที่ Case',
+      '- ความสามารถในการระบายความร้อน',
+      '- Fan/Pump Connector'
+    ].join("\n")),
+    topic('PSU', [
+      'ถ้า Upgrade GPU/CPU แล้วกินไฟมากขึ้น ต้องตรวจ:',
+      '- Wattage',
+      '- Connector',
+      '- คุณภาพและมาตรฐานของ PSU',
+      '- ความต้องการไฟของระบบโดยรวม',
+      '',
+      'อย่าเลือกจาก Watt อย่างเดียว เพราะ Connector และคุณภาพก็สำคัญ'
+    ].join("\n")),
+    topic('Case / Airflow', [
+      'ถ้าเปลี่ยนอุปกรณ์ที่ใหญ่ขึ้น ต้องตรวจ:',
+      '- Motherboard Form Factor',
+      '- ความยาว/ความสูง GPU',
+      '- ความสูง CPU Cooler',
+      '- ขนาด PSU',
+      '- พื้นที่พัดลมและหม้อน้ำ',
+      '- Airflow'
+    ].join("\n")),
+    topic('Notebook Upgrade', [
+      'ให้ตรวจรุ่นเครื่องก่อนเสมอ เพราะบางรุ่น RAM บางส่วนหรือทั้งหมดบัดกรีบน Mainboard และบางรุ่นมี Slot สำหรับ RAM/Storage จำกัด'
+    ].join("\n")),
+  ],
+  'Upgrade แบบคิดเป็นระบบ': [
+    topic('Upgrade แบบคิดเป็นระบบ', [
+      'ก่อนซื้ออุปกรณ์ ให้ตอบ 5 ข้อ:',
+      '',
+      '1. **ต้องการแก้ปัญหาอะไร?**',
+      '2. **ชิ้นเดิมเป็นข้อจำกัดตรงไหน?**',
+      '3. **เครื่องรองรับอะไรบ้าง?**',
+      '4. **อุปกรณ์ใหม่ทำงานร่วมกับส่วนอื่นได้หรือไม่?**',
+      '5. **หลัง Upgrade ต้องทดสอบอะไร?**',
+      '',
+      'ดังนั้น **Upgrade ที่ดี = แก้คอขวด + เข้ากันได้ + ใช้งานได้จริง** ไม่ใช่แค่ตัวเลขสเปกสูงขึ้น'
+    ].join("\n")),
+  ],
+  'Post-Repair / Post-Upgrade Test': [
+    topic('Post-Repair / Post-Upgrade Test', [
+      'หลังเปลี่ยนหรือ Upgrade ให้ตรวจ:',
+      '- Boot',
+      '- BIOS/UEFI',
+      '- RAM Capacity',
+      '- Storage Detection',
+      '- Display',
+      '- Network',
+      '- USB',
+      '- Audio',
+      '- Temperature',
+      '- Device Manager',
+      '- โปรแกรมหรือเกม/งานที่ต้องการใช้งาน',
+      '',
+      'ต้องยืนยันว่า **ปัญหาเดิมหาย และไม่มีปัญหาใหม่เกิดขึ้น**'
+    ].join("\n")),
+  ],
+  'Verification': [
+    topic('Verification', [
+      'หลักฐานของการซ่อมหรือ Upgrade ไม่ใช่แค่ "เครื่องเปิดติด" แต่ต้องตรวจว่าอุปกรณ์ที่เปลี่ยนทำงานตามที่ต้องการจริง',
+      '',
+      'ตัวอย่าง:',
+      '- เพิ่ม RAM → Windows เห็นความจุเพิ่มและใช้งานได้',
+      '- เปลี่ยน SSD → BIOS/Windows เห็น Drive และทดสอบอ่านเขียนได้',
+      '- เปลี่ยน GPU → มีภาพ Driver ปกติ และทดสอบงานกราฟิก',
+      '- เปลี่ยน Cooler → อุณหภูมิเหมาะสมและพัดลมทำงาน'
+    ].join("\n")),
+  ],
+};
+
+
 const modules = [
   {
     id: 'hardware', code: 'MODULE 01', name: 'Computer Hardware', shortName: 'COMPUTER\nHARDWARE', x: 50, y: 35,
@@ -332,8 +682,26 @@ const modules = [
     id: 'maintenance', code: 'MODULE 03', name: 'Hardware Maintenance', shortName: 'HARDWARE\nMAINTENANCE', x: 87, y: 64,
     goal: 'สามารถตรวจสอบ ดูแล ซ่อม เปลี่ยน และอัปเกรดอุปกรณ์คอมพิวเตอร์เบื้องต้นได้',
     structure: 'Inspection → Cleaning → Diagnosis → Repair → Replacement → Upgrade → Testing → Verification → Practical Challenge',
-    skills: createSkills('maintenance', ['Inspection ก่อนลงมือ', 'Cleaning', 'Cables / Connectors', 'RAM', 'Storage', 'CPU / Cooler', 'GPU', 'PSU', 'Motherboard', 'Monitor', 'Keyboard / Mouse', 'Notebook Hardware', 'Replacement', { title: 'Upgrade Hardware', subtopics: ['RAM', 'HDD → SSD', 'SSD', 'GPU', 'CPU', 'CPU Cooler', 'PSU', 'Case / Airflow', 'Notebook Upgrade'] }, 'Upgrade แบบคิดเป็นระบบ', 'Post-Repair / Post-Upgrade Test', 'Verification']),
-    challenge: 'ตรวจเครื่อง → ระบุปัญหาหรือสิ่งที่ควรปรับปรุง → เลือกวิธีแก้ → ลงมือปฏิบัติ → ทดสอบ → อธิบายผล',
+    skills: createSkills('maintenance', [
+      { title: 'Inspection ก่อนลงมือ', subtopics: maintenanceSkillContent['Inspection ก่อนลงมือ'] },
+      { title: 'Cleaning', subtopics: maintenanceSkillContent['Cleaning'] },
+      { title: 'Cables / Connectors', subtopics: maintenanceSkillContent['Cables / Connectors'] },
+      { title: 'RAM', subtopics: maintenanceSkillContent['RAM'] },
+      { title: 'Storage', subtopics: maintenanceSkillContent['Storage'] },
+      { title: 'CPU / Cooler', subtopics: maintenanceSkillContent['CPU / Cooler'] },
+      { title: 'GPU', subtopics: maintenanceSkillContent['GPU'] },
+      { title: 'PSU', subtopics: maintenanceSkillContent['PSU'] },
+      { title: 'Motherboard', subtopics: maintenanceSkillContent['Motherboard'] },
+      { title: 'Monitor', subtopics: maintenanceSkillContent['Monitor'] },
+      { title: 'Keyboard / Mouse', subtopics: maintenanceSkillContent['Keyboard / Mouse'] },
+      { title: 'Notebook Hardware', subtopics: maintenanceSkillContent['Notebook Hardware'] },
+      { title: 'Replacement', subtopics: maintenanceSkillContent['Replacement'] },
+      { title: 'Upgrade Hardware', subtopics: maintenanceSkillContent['Upgrade Hardware'] },
+      { title: 'Upgrade แบบคิดเป็นระบบ', subtopics: maintenanceSkillContent['Upgrade แบบคิดเป็นระบบ'] },
+      { title: 'Post-Repair / Post-Upgrade Test', subtopics: maintenanceSkillContent['Post-Repair / Post-Upgrade Test'] },
+      { title: 'Verification', subtopics: maintenanceSkillContent['Verification'] }
+    ]),
+    challenge: 'รับเครื่องที่มีอาการ → Inspection → Cleaning → Diagnosis → Repair/Replace/Upgrade → Test → Verification\n\nโจทย์ควรบังคับให้ผู้เรียนอธิบายด้วยว่า **ทำไมจึงเลือกชิ้นนั้น วิธีตรวจสอบคืออะไร และหลังทำแล้วใช้หลักฐานอะไรยืนยัน**',
     kind: 'module'
   },
   {
@@ -579,11 +947,11 @@ function detailedTopicsMarkup(topics) {
 function detailPage(item) {
   if (!item) return missingPage();
 
-  const isDetailedSkill = item.kind === 'skill' && (item.parent === 'hardware' || item.parent === 'assembly');
+  const isDetailedSkill = item.kind === 'skill' && (item.parent === 'hardware' || item.parent === 'assembly' || item.parent === 'maintenance');
   let sections = '';
   let meta = item.code;
   let summary = item.goal || item.summary || `Skill in Module ${moduleById.get(item.parent)?.name || ''}`;
-  const detailSource = isDetailedSkill ? `CONTENT SOURCE // CONTENT PACK 0${item.parent === 'hardware' ? '1 — MODULE 1' : '2 — MODULE 2'}` : 'CONTENT SOURCE // MASTER_CONTENT.md';
+  const detailSource = isDetailedSkill ? `CONTENT SOURCE // CONTENT PACK 0${item.parent === 'hardware' ? '1 — MODULE 1' : (item.parent === 'assembly' ? '2 — MODULE 2' : '3 — MODULE 3')}` : 'CONTENT SOURCE // MASTER_CONTENT.md';
 
   if (isDetailedSkill) {
     summary = item.subtopics[0]?.content || summary;
