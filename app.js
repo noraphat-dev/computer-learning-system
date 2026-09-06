@@ -702,6 +702,39 @@ const windowsInstallationSkillContent = {
   ],
 };
 
+const operatingSystemSkillContent = {
+  'Operating System': [
+    topic('Operating System', 'OS คือ Software หลักที่จัดการทรัพยากรของ Computer และเป็นตัวกลางระหว่าง User,\nProgram และ Hardware เช่น โปรแกรมสามารถขอใช้ Keyboard ผ่าน OS\nโดยไม่ต้องควบคุมวงจร Keyboard โดยตรง')
+  ],
+  'File / Folder': [
+    topic('File / Folder', 'File คือข้อมูลที่จัดเก็บ เช่น เอกสารหรือรูปภาพ ส่วน Folder ใช้จัดกลุ่ม File และ Path\nบอกตำแหน่งของ File/Folder\n\nต้องทำได้: Copy, Move, Rename, Delete, สร้าง Folder และค้นหา File')
+  ],
+  'User / Permissions': [
+    topic('User / Permissions', 'Administrator มีสิทธิ์จัดการระบบมากกว่า Standard User ส่วน Permission\nคือสิทธิ์ในการเข้าถึงหรือแก้ไขทรัพยากร เช่น File/Folder')
+  ],
+  'System Settings': [
+    topic('System Settings', 'ควรรู้ Display, Sound, Network, Bluetooth, Accounts, Windows Update และ\nStorage')
+  ],
+  'System Information': [
+    topic('System Information', 'ตรวจ CPU, RAM, Windows Version, System Type, Storage และ Device\nInformation เพื่อใช้ประกอบการแก้ปัญหา')
+  ],
+  'Driver': [
+    topic('Driver', 'Driver คือ Software ที่ช่วยให้ Windows ติดต่อและควบคุม Hardware ได้ เช่น Network\nAdapter อาจมี Hardware ปกติแต่ใช้งานไม่ได้หาก Driver มีปัญหา')
+  ],
+  'Update / Reinstall / Rollback': [
+    topic('Update / Reinstall / Rollback', 'Update ใช้ติดตั้ง Driver รุ่นใหม่, Reinstall ใช้ติดตั้งใหม่เมื่อ Driver มีปัญหา และ\nRollback ใช้ย้อนกลับเมื่อปัญหาเกิดหลัง Update')
+  ],
+  'Device Manager': [
+    topic('Device Manager', 'ใช้ดู Hardware ที่ Windows ตรวจพบและสถานะของ Driver รวมถึง Unknown Device,\nError และอุปกรณ์ที่ถูก Disable')
+  ],
+  'Device Error': [
+    topic('Device Error', 'ดูชื่ออุปกรณ์ → ดู Status/Error Code → ตรวจ Driver → Update/Reinstall/Rollback\nตามกรณี → Restart → ทดสอบ')
+  ],
+  'Verification': [
+    topic('Verification', 'Device Manager ควรไม่มี Error และอุปกรณ์ต้องใช้งานจริงได้\n\nPractical Challenge\n\nหา Driver ผิดปกติ → ระบุอุปกรณ์ → วิเคราะห์ → แก้ Driver → Restart → ตรวจ Device\nManager → ทดสอบ')
+  ]
+};
+
 const modules = [
   {
     id: 'hardware', code: 'MODULE 01', name: 'Computer Hardware', shortName: 'COMPUTER\nHARDWARE', x: 50, y: 35,
@@ -768,7 +801,18 @@ const modules = [
     id: 'operating-system-driver', code: 'MODULE 05', name: 'Operating System & Driver', shortName: 'OPERATING SYSTEM &\nDRIVER', x: 50, y: 94,
     goal: 'เข้าใจหน้าที่ของระบบปฏิบัติการ และสามารถจัดการ Driver และอุปกรณ์ใน Windows ได้',
     structure: 'Operating System Fundamentals → Windows Management → System Configuration → Driver → Device Manager → Update/Install/Rollback → Verification → Troubleshooting → Practical Challenge',
-    skills: createSkills('operating-system-driver', ['Operating System', 'File / Folder', 'User / Permissions', 'System Settings', 'System Information', 'Driver', 'Update / Reinstall / Rollback', 'Device Manager', 'Device Error', 'Verification']),
+    skills: createSkills('operating-system-driver', [
+      { title: 'Operating System', subtopics: operatingSystemSkillContent['Operating System'] },
+      { title: 'File / Folder', subtopics: operatingSystemSkillContent['File / Folder'] },
+      { title: 'User / Permissions', subtopics: operatingSystemSkillContent['User / Permissions'] },
+      { title: 'System Settings', subtopics: operatingSystemSkillContent['System Settings'] },
+      { title: 'System Information', subtopics: operatingSystemSkillContent['System Information'] },
+      { title: 'Driver', subtopics: operatingSystemSkillContent['Driver'] },
+      { title: 'Update / Reinstall / Rollback', subtopics: operatingSystemSkillContent['Update / Reinstall / Rollback'] },
+      { title: 'Device Manager', subtopics: operatingSystemSkillContent['Device Manager'] },
+      { title: 'Device Error', subtopics: operatingSystemSkillContent['Device Error'] },
+      { title: 'Verification', subtopics: operatingSystemSkillContent['Verification'] },
+    ]),
     challenge: 'กำหนดอุปกรณ์หนึ่งตัวที่มีปัญหา แล้ว ตรวจสอบ → หาเหตุผล → จัดการ Driver → ทดสอบ → Verify',
     kind: 'module'
   },
@@ -999,11 +1043,11 @@ function detailedTopicsMarkup(topics) {
 function detailPage(item) {
   if (!item) return missingPage();
 
-  const isDetailedSkill = item.kind === 'skill' && (item.parent === 'hardware' || item.parent === 'assembly' || item.parent === 'maintenance' || item.parent === 'windows-installation');
+  const isDetailedSkill = item.kind === 'skill' && (item.parent === 'hardware' || item.parent === 'assembly' || item.parent === 'maintenance' || item.parent === 'windows-installation' || item.parent === 'operating-system-driver');
   let sections = '';
   let meta = item.code;
   let summary = item.goal || item.summary || `Skill in Module ${moduleById.get(item.parent)?.name || ''}`;
-  const detailSource = isDetailedSkill ? `CONTENT SOURCE // CONTENT PACK 0${item.parent === 'hardware' ? '1 — MODULE 1' : (item.parent === 'assembly' ? '2 — MODULE 2' : (item.parent === 'maintenance' ? '3 — MODULE 3' : '4 — MODULE 4'))}` : 'CONTENT SOURCE // MASTER_CONTENT.md';
+  const detailSource = isDetailedSkill ? `CONTENT SOURCE // CONTENT PACK 0${item.parent === 'hardware' ? '1 — MODULE 1' : (item.parent === 'assembly' ? '2 — MODULE 2' : (item.parent === 'maintenance' ? '3 — MODULE 3' : (item.parent === 'windows-installation' ? '4 — MODULE 4' : '5 — MODULE 5')))}` : 'CONTENT SOURCE // MASTER_CONTENT.md';
 
   if (isDetailedSkill) {
     summary = item.subtopics[0]?.content || summary;
