@@ -663,6 +663,45 @@ const maintenanceSkillContent = {
 };
 
 
+const windowsInstallationSkillContent = {
+  'Preparation': [
+    topic('Preparation', 'เตรียม Computer, USB Flash Drive, Windows 11 Installation Media, Internet ตามขั้นตอน และ Backup ข้อมูลสำคัญ เพราะการติดตั้งใหม่อาจลบข้อมูล')
+  ],
+  'Windows Installation Media': [
+    topic('Windows Installation Media', 'คือสื่อ เช่น USB ที่ใช้เริ่มกระบวนการติดตั้ง Windows และสามารถสร้างด้วยเครื่องมือจาก Microsoft')
+  ],
+  'Bootable USB': [
+    topic('Bootable USB', 'USB ต้องสามารถ Boot ได้ หากไม่ได้ให้ตรวจการสร้าง USB และ Boot Menu/UEFI')
+  ],
+  'Boot Menu': [
+    topic('Boot Menu', 'ใช้ Boot Menu ของเครื่องเลือก USB เป็นอุปกรณ์เริ่มระบบ')
+  ],
+  'BIOS / UEFI': [
+    topic('BIOS / UEFI', 'ทำงานก่อน Operating System และใช้ตรวจ Boot Mode, Storage, Boot Order และ Secure Boot ตามข้อกำหนดของ Windows 11')
+  ],
+  'Windows Setup': [
+    topic('Windows Setup', 'เลือกภาษา Keyboard เริ่ม Installation เลือกประเภทการติดตั้ง และเลือก Drive/Partition')
+  ],
+  'Disk / Partition': [
+    topic('Disk / Partition', 'Drive คืออุปกรณ์เก็บข้อมูล, Partition คือส่วนที่แบ่งจาก Drive และ Unallocated Space คือพื้นที่ที่ยังไม่ได้จัดเป็น Partition\nต้องตรวจ Drive ให้ถูกตัวก่อนลบหรือสร้าง Partition เพราะการเลือกผิดอาจทำให้ข้อมูลหาย')
+  ],
+  'Installation': [
+    topic('Installation', 'เลือกตำแหน่งติดตั้งที่ถูกต้องแล้วปล่อย Setup ทำงานและ Restart ตามขั้นตอน')
+  ],
+  'Post-Install': [
+    topic('Post-Install', 'ตั้งค่า User, Network, Windows Update และ Driver')
+  ],
+  'Required Drivers': [
+    topic('Required Drivers', 'ตรวจ Chipset, Graphics, Network, Audio และอุปกรณ์ที่จำเป็น')
+  ],
+  'Verification': [
+    topic('Verification', 'ตรวจ Device Manager, Display, Network, Audio, Storage, USB และ Windows Update')
+  ],
+  'Common Troubleshooting': [
+    topic('Common Troubleshooting', '-   USB Boot ไม่ได้: ตรวจ USB, Boot Menu และ UEFI -   Storage ไม่พบ: ตรวจ BIOS/UEFI, Connection และการตั้งค่าที่เกี่ยวข้อง -   Internet ไม่มี: ตรวจ Network Adapter และ Driver -   ไม่มีภาพ: ตรวจ Monitor, Cable, Graphics และ Driver')
+  ],
+};
+
 const modules = [
   {
     id: 'hardware', code: 'MODULE 01', name: 'Computer Hardware', shortName: 'COMPUTER\nHARDWARE', x: 50, y: 35,
@@ -708,7 +747,20 @@ const modules = [
     id: 'windows-installation', code: 'MODULE 04', name: 'Windows Installation', shortName: 'WINDOWS\nINSTALLATION', x: 70, y: 85,
     goal: 'เข้าใจกระบวนการติดตั้ง Windows ตั้งแต่การเตรียมเครื่องและสื่อการติดตั้ง ไปจนถึงการตั้งค่าหลังติดตั้งและตรวจสอบระบบ',
     structure: 'Installation Preparation → Windows Installation Media → Boot & UEFI → Windows Setup → Disk & Partition → Windows Installation → Post-Installation Setup → Installation Verification → Installation Troubleshooting → Practical Challenge',
-    skills: createSkills('windows-installation', ['Preparation', 'Windows Installation Media', 'Bootable USB', 'Boot Menu', 'BIOS / UEFI', 'Windows Setup', 'Disk / Partition', 'Installation', 'Post-Install', 'Required Drivers', 'Verification', 'Common Troubleshooting']),
+    skills: createSkills('windows-installation', [
+      { title: 'Preparation', subtopics: windowsInstallationSkillContent['Preparation'] },
+      { title: 'Windows Installation Media', subtopics: windowsInstallationSkillContent['Windows Installation Media'] },
+      { title: 'Bootable USB', subtopics: windowsInstallationSkillContent['Bootable USB'] },
+      { title: 'Boot Menu', subtopics: windowsInstallationSkillContent['Boot Menu'] },
+      { title: 'BIOS / UEFI', subtopics: windowsInstallationSkillContent['BIOS / UEFI'] },
+      { title: 'Windows Setup', subtopics: windowsInstallationSkillContent['Windows Setup'] },
+      { title: 'Disk / Partition', subtopics: windowsInstallationSkillContent['Disk / Partition'] },
+      { title: 'Installation', subtopics: windowsInstallationSkillContent['Installation'] },
+      { title: 'Post-Install', subtopics: windowsInstallationSkillContent['Post-Install'] },
+      { title: 'Required Drivers', subtopics: windowsInstallationSkillContent['Required Drivers'] },
+      { title: 'Verification', subtopics: windowsInstallationSkillContent['Verification'] },
+      { title: 'Common Troubleshooting', subtopics: windowsInstallationSkillContent['Common Troubleshooting'] },
+    ]),
     challenge: 'Preparation → Boot Drive → Boot/UEFI → Windows Setup → Partition → Installation → Configuration → Verification → Troubleshooting',
     kind: 'module'
   },
@@ -947,11 +999,11 @@ function detailedTopicsMarkup(topics) {
 function detailPage(item) {
   if (!item) return missingPage();
 
-  const isDetailedSkill = item.kind === 'skill' && (item.parent === 'hardware' || item.parent === 'assembly' || item.parent === 'maintenance');
+  const isDetailedSkill = item.kind === 'skill' && (item.parent === 'hardware' || item.parent === 'assembly' || item.parent === 'maintenance' || item.parent === 'windows-installation');
   let sections = '';
   let meta = item.code;
   let summary = item.goal || item.summary || `Skill in Module ${moduleById.get(item.parent)?.name || ''}`;
-  const detailSource = isDetailedSkill ? `CONTENT SOURCE // CONTENT PACK 0${item.parent === 'hardware' ? '1 — MODULE 1' : (item.parent === 'assembly' ? '2 — MODULE 2' : '3 — MODULE 3')}` : 'CONTENT SOURCE // MASTER_CONTENT.md';
+  const detailSource = isDetailedSkill ? `CONTENT SOURCE // CONTENT PACK 0${item.parent === 'hardware' ? '1 — MODULE 1' : (item.parent === 'assembly' ? '2 — MODULE 2' : (item.parent === 'maintenance' ? '3 — MODULE 3' : '4 — MODULE 4'))}` : 'CONTENT SOURCE // MASTER_CONTENT.md';
 
   if (isDetailedSkill) {
     summary = item.subtopics[0]?.content || summary;
