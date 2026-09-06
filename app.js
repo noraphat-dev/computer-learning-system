@@ -25,8 +25,10 @@ function createSkills(moduleId, definitions) {
   return definitions.map((definition, index) => {
     const skill = typeof definition === 'string' ? { title: definition } : definition;
     const [x, y] = skillNodePositions[index];
+    const baseId = skill.id || skill.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    const finalId = baseId.startsWith(`${moduleId}-`) ? baseId : `${moduleId}-${baseId || `skill-${String(index + 1).padStart(2, '0')}`}`;
     return {
-      id: skill.id || `${moduleId}-skill-${String(index + 1).padStart(2, '0')}`,
+      id: finalId,
       title: skill.title,
       shortName: skill.title,
       parent: moduleId,
@@ -174,21 +176,21 @@ const hardwareSkillContent = {
 };
 
 const hardwareSkills = createSkills('hardware', [
-  { id: 'cpu', title: 'CPU', x: 7, y: 8, subtopics: hardwareSkillContent.cpu },
-  { id: 'motherboard', title: 'Motherboard / Mainboard', x: 20, y: 8, subtopics: hardwareSkillContent.motherboard },
-  { id: 'ram', title: 'RAM', x: 33, y: 8, subtopics: hardwareSkillContent.ram },
-  { id: 'hdd', title: 'HDD', x: 46, y: 8, subtopics: hardwareSkillContent.hdd },
-  { id: 'ssd', title: 'SSD', x: 59, y: 8, subtopics: hardwareSkillContent.ssd },
-  { id: 'gpu', title: 'GPU / Graphics Card', x: 72, y: 8, subtopics: hardwareSkillContent.gpu },
-  { id: 'psu', title: 'PSU', x: 14, y: 17, subtopics: hardwareSkillContent.psu },
-  { id: 'cpu-cooler', title: 'CPU Cooler', x: 28, y: 17, subtopics: hardwareSkillContent['cpu-cooler'] },
-  { id: 'case', title: 'Case', x: 42, y: 17, subtopics: hardwareSkillContent.case },
-  { id: 'monitor', title: 'Monitor', x: 56, y: 17, subtopics: hardwareSkillContent.monitor },
-  { id: 'keyboard', title: 'Keyboard', x: 70, y: 17, subtopics: hardwareSkillContent.keyboard },
-  { id: 'notebook-keyboard', title: 'Notebook Keyboard', x: 75, y: 25, subtopics: hardwareSkillContent['notebook-keyboard'] },
-  { id: 'mouse', title: 'Mouse / Touchpad', x: 84, y: 17, subtopics: hardwareSkillContent.mouse },
-  { id: 'network-adapter', title: 'Network Adapter', x: 25, y: 25, subtopics: hardwareSkillContent['network-adapter'] },
-  { id: 'printer', title: 'Printer', x: 49, y: 25, subtopics: hardwareSkillContent.printer }
+  { id: 'hardware-cpu', title: 'CPU', x: 7, y: 8, subtopics: hardwareSkillContent.cpu },
+  { id: 'hardware-motherboard', title: 'Motherboard / Mainboard', x: 20, y: 8, subtopics: hardwareSkillContent.motherboard },
+  { id: 'hardware-ram', title: 'RAM', x: 33, y: 8, subtopics: hardwareSkillContent.ram },
+  { id: 'hardware-hdd', title: 'HDD', x: 46, y: 8, subtopics: hardwareSkillContent.hdd },
+  { id: 'hardware-ssd', title: 'SSD', x: 59, y: 8, subtopics: hardwareSkillContent.ssd },
+  { id: 'hardware-gpu', title: 'GPU / Graphics Card', x: 72, y: 8, subtopics: hardwareSkillContent.gpu },
+  { id: 'hardware-psu', title: 'PSU', x: 14, y: 17, subtopics: hardwareSkillContent.psu },
+  { id: 'hardware-cpu-cooler', title: 'CPU Cooler', x: 28, y: 17, subtopics: hardwareSkillContent['cpu-cooler'] },
+  { id: 'hardware-case', title: 'Case', x: 42, y: 17, subtopics: hardwareSkillContent.case },
+  { id: 'hardware-monitor', title: 'Monitor', x: 56, y: 17, subtopics: hardwareSkillContent.monitor },
+  { id: 'hardware-keyboard', title: 'Keyboard', x: 70, y: 17, subtopics: hardwareSkillContent.keyboard },
+  { id: 'hardware-notebook-keyboard', title: 'Notebook Keyboard', x: 75, y: 25, subtopics: hardwareSkillContent['notebook-keyboard'] },
+  { id: 'hardware-mouse', title: 'Mouse / Touchpad', x: 84, y: 17, subtopics: hardwareSkillContent.mouse },
+  { id: 'hardware-network-adapter', title: 'Network Adapter', x: 25, y: 25, subtopics: hardwareSkillContent['network-adapter'] },
+  { id: 'hardware-printer', title: 'Printer', x: 49, y: 25, subtopics: hardwareSkillContent.printer }
 ]);
 
 const assemblySkillContent = {
@@ -283,31 +285,31 @@ const assemblySkillContent = {
   ],
   'no-boot': [
     topic('ถ้าไม่ Boot', [
-      'ตรวจตามลำดับ **Power → PSU → 24-pin/CPU Power → RAM → GPU → Front Panel →',
-      'BIOS/UEFI → อุปกรณ์ทีละชิ้น**'
+      'ตรวจตามลำดับ Power → PSU → 24-pin/CPU Power → RAM → GPU → Front Panel →',
+      'BIOS/UEFI → อุปกรณ์ทีละชิ้น'
     ])
   ],
 };
 
 const assemblySkills = createSkills('assembly', [
-  { id: 'preparation', title: 'Preparation', x: 7, y: 8, subtopics: assemblySkillContent['preparation'] },
-  { id: 'safety-esd', title: 'Safety / ESD', x: 20, y: 8, subtopics: assemblySkillContent['safety-esd'] },
-  { id: 'components', title: 'Components', x: 33, y: 8, subtopics: assemblySkillContent['components'] },
-  { id: 'cpu', title: 'CPU', x: 46, y: 8, subtopics: assemblySkillContent['cpu'] },
-  { id: 'cooler', title: 'CPU Cooler', x: 59, y: 8, subtopics: assemblySkillContent['cooler'] },
-  { id: 'ram', title: 'RAM', x: 72, y: 8, subtopics: assemblySkillContent['ram'] },
-  { id: 'storage', title: 'Storage', x: 85, y: 8, subtopics: assemblySkillContent['storage'] },
-  { id: 'motherboard', title: 'Motherboard', x: 14, y: 17, subtopics: assemblySkillContent['motherboard'] },
-  { id: 'psu', title: 'PSU', x: 28, y: 17, subtopics: assemblySkillContent['psu'] },
-  { id: 'gpu', title: 'GPU', x: 42, y: 17, subtopics: assemblySkillContent['gpu'] },
-  { id: 'power-connector', title: 'Power Connector', x: 56, y: 17, subtopics: assemblySkillContent['power-connector'] },
-  { id: 'front-panel', title: 'Front Panel', x: 70, y: 17, subtopics: assemblySkillContent['front-panel'] },
-  { id: 'cable-management', title: 'Cable Management', x: 84, y: 17, subtopics: assemblySkillContent['cable-management'] },
-  { id: 'pre-power-check', title: 'Pre-Power Check', x: 22, y: 26, subtopics: assemblySkillContent['pre-power-check'] },
-  { id: 'first-boot', title: 'First Boot', x: 36, y: 26, subtopics: assemblySkillContent['first-boot'] },
-  { id: 'bios-uefi', title: 'BIOS / UEFI', x: 50, y: 26, subtopics: assemblySkillContent['bios-uefi'] },
-  { id: 'post-build-verification', title: 'Post-Build Verification', x: 64, y: 26, subtopics: assemblySkillContent['post-build-verification'] },
-  { id: 'no-boot', title: 'No Boot Troubleshooting', x: 78, y: 26, subtopics: assemblySkillContent['no-boot'] },
+  { id: 'assembly-preparation', title: 'Preparation', x: 7, y: 8, subtopics: assemblySkillContent['preparation'] },
+  { id: 'assembly-safety-esd', title: 'Safety / ESD', x: 20, y: 8, subtopics: assemblySkillContent['safety-esd'] },
+  { id: 'assembly-components', title: 'Components', x: 33, y: 8, subtopics: assemblySkillContent['components'] },
+  { id: 'assembly-cpu', title: 'CPU', x: 46, y: 8, subtopics: assemblySkillContent['cpu'] },
+  { id: 'assembly-cooler', title: 'CPU Cooler', x: 59, y: 8, subtopics: assemblySkillContent['cooler'] },
+  { id: 'assembly-ram', title: 'RAM', x: 72, y: 8, subtopics: assemblySkillContent['ram'] },
+  { id: 'assembly-storage', title: 'Storage', x: 85, y: 8, subtopics: assemblySkillContent['storage'] },
+  { id: 'assembly-motherboard', title: 'Motherboard', x: 14, y: 17, subtopics: assemblySkillContent['motherboard'] },
+  { id: 'assembly-psu', title: 'PSU', x: 28, y: 17, subtopics: assemblySkillContent['psu'] },
+  { id: 'assembly-gpu', title: 'GPU', x: 42, y: 17, subtopics: assemblySkillContent['gpu'] },
+  { id: 'assembly-power-connector', title: 'Power Connector', x: 56, y: 17, subtopics: assemblySkillContent['power-connector'] },
+  { id: 'assembly-front-panel', title: 'Front Panel', x: 70, y: 17, subtopics: assemblySkillContent['front-panel'] },
+  { id: 'assembly-cable-management', title: 'Cable Management', x: 84, y: 17, subtopics: assemblySkillContent['cable-management'] },
+  { id: 'assembly-pre-power-check', title: 'Pre-Power Check', x: 22, y: 26, subtopics: assemblySkillContent['pre-power-check'] },
+  { id: 'assembly-first-boot', title: 'First Boot', x: 36, y: 26, subtopics: assemblySkillContent['first-boot'] },
+  { id: 'assembly-bios-uefi', title: 'BIOS / UEFI', x: 50, y: 26, subtopics: assemblySkillContent['bios-uefi'] },
+  { id: 'assembly-post-build-verification', title: 'Post-Build Verification', x: 64, y: 26, subtopics: assemblySkillContent['post-build-verification'] },
+  { id: 'assembly-no-boot', title: 'No Boot Troubleshooting', x: 78, y: 26, subtopics: assemblySkillContent['no-boot'] },
 ]);
 
 
