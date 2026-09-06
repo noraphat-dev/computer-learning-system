@@ -735,6 +735,100 @@ const operatingSystemSkillContent = {
   ]
 };
 
+
+const softwareSkillContent = {
+  'Software Types': [
+    topic('Software Types', [
+      '- **Operating System:** จัดการระบบและเป็นตัวกลางระหว่าง User, Program และ Hardware',
+      '- **Application:** โปรแกรมที่ผู้ใช้ใช้ทำงาน เช่น เอกสาร ตารางคำนวณ Browser',
+      '- **Utility:** เครื่องมือช่วยจัดการหรือดูแลระบบ',
+      '- **Driver:** Software ที่ช่วยให้ OS ติดต่อ Hardware',
+      '',
+      'การแยกประเภทช่วยให้รู้ว่าเวลามีปัญหาควรเริ่มตรวจตรงไหน'
+    ].join('\n'))
+  ],
+  'Installation': [
+    topic('Installation', [
+      'ขั้นตอนพื้นฐานคือ **ดาวน์โหลดจากแหล่งที่เชื่อถือได้ → ตรวจ Compatibility → ติดตั้ง → ตั้งค่า → ทดสอบ**',
+      '',
+      'ระหว่างติดตั้ง โปรแกรมอาจเพิ่มไฟล์, Shortcut, Service, Configuration หรือ Dependency ที่จำเป็นต่อการทำงาน',
+      '',
+      'ดังนั้น "ติดตั้งสำเร็จ" ไม่ได้แปลว่า "ใช้งานได้แน่นอน"'
+    ].join('\n'))
+  ],
+  'Compatibility / Dependency': [
+    topic('Compatibility / Dependency', [
+      'ก่อนติดตั้งควรดู Windows Version, CPU Architecture, RAM/Storage, Driver และ Components ที่โปรแกรมต้องใช้',
+      '',
+      'บางโปรแกรมติดตั้งได้แต่เปิดไม่ได้ เพราะ Dependency ไม่ครบ, Driver มีปัญหา, Permission ไม่พอ หรือ Configuration ผิด'
+    ].join('\n'))
+  ],
+  'Configuration': [
+    topic('Configuration', [
+      'ตั้งค่าภาษา Account Storage Network และ Preferences ตามชนิดของโปรแกรม',
+      '',
+      'ควรเปลี่ยนทีละค่าที่เกี่ยวข้อง เพื่อให้รู้ว่าการตั้งค่าใดทำให้เกิดปัญหา'
+    ].join('\n'))
+  ],
+  'Office / Productivity': [
+    topic('Office / Productivity', [
+      'ตัวอย่าง Word Processor, Spreadsheet, Presentation, PDF Tools และ Browser โดยควรรู้การติดตั้ง เปิดใช้งาน ตั้งค่าพื้นฐาน Update และแก้ปัญหาทั่วไป'
+    ].join('\n'))
+  ],
+  'Utilities': [
+    topic('Utilities', [
+      'เช่น File Compression, Backup, Disk Management และ Security Tools ควรเข้าใจหน้าที่ก่อนใช้ เพราะบางเครื่องมือสามารถเปลี่ยนแปลงข้อมูลหรือการตั้งค่าระบบได้'
+    ].join('\n'))
+  ],
+  'Updates': [
+    topic('Updates', [
+      'Update ช่วยแก้ Bug ปัญหาความปลอดภัย เพิ่มความสามารถ และปรับ Compatibility แต่หลัง Update หากโปรแกรมมีปัญหา ควรเก็บ Error และพิจารณาว่าปัญหาเริ่มหลัง Update หรือไม่'
+    ].join('\n'))
+  ],
+  'Uninstall': [
+    topic('Uninstall', [
+      'ถอนผ่าน Windows หรือ Uninstaller ของโปรแกรม การลบ Shortcut ไม่ได้แปลว่าโปรแกรมถูกถอนการติดตั้ง'
+    ].join('\n'))
+  ],
+  'License Basics': [
+    topic('License Basics', [
+      'รู้จัก Freeware, Trial, Paid, Subscription และ License Key/Account และควรใช้ Software ตามเงื่อนไข License'
+    ].join('\n'))
+  ],
+  'Program Errors': [
+    topic('Program Errors', [
+      'อาการที่พบบ่อย:',
+      '- เปิดไม่ขึ้น',
+      '- Crash',
+      '- ค้าง',
+      '- ทำงานผิดปกติ',
+      '- Error Message',
+      '',
+      'ให้เก็บข้อความ Error ไว้ เพราะเป็นหลักฐานที่ช่วยหาสาเหตุได้'
+    ].join('\n'))
+  ],
+  'Repair / Reset / Reinstall': [
+    topic('Repair / Reset / Reinstall', [
+      'ความหมายต่างกัน:',
+      '- **Repair:** พยายามซ่อมไฟล์หรือส่วนประกอบของโปรแกรมโดยยังคงข้อมูล/การตั้งค่าบางส่วน',
+      '- **Reset:** คืนค่าบางส่วนของโปรแกรมตามที่ระบบกำหนด ซึ่งอาจกระทบการตั้งค่า',
+      '- **Reinstall:** ถอนและติดตั้งใหม่ เหมาะเมื่อการติดตั้งเดิมเสียหรือแก้ด้วยวิธีอื่นไม่ได้',
+      '',
+      'เริ่มจากวิธีที่กระทบข้อมูลและการตั้งค่าน้อยก่อน เช่น Restart → ตรวจ Update → Repair → Reset → Reinstall ตามกรณี'
+    ].join('\n'))
+  ],
+  'Post-Fix Test': [
+    topic('Post-Fix Test', [
+      'หลังแก้ให้เปิดโปรแกรมและทดสอบ Function ที่เคยมีปัญหา พร้อมตรวจว่าไฟล์/ข้อมูลและการตั้งค่าที่จำเป็นยังใช้งานได้'
+    ].join('\n'))
+  ],
+  'Practical Challenge': [
+    topic('Practical Challenge', [
+      'Install → Configure → Update → Test → จำลองปัญหา → เก็บ Error → วิเคราะห์ Compatibility/Dependency/Setting → Repair/Reset/Reinstall → Test ซ้ำ'
+    ].join('\n'))
+  ],
+};
+
 const modules = [
   {
     id: 'hardware', code: 'MODULE 01', name: 'Computer Hardware', shortName: 'COMPUTER\nHARDWARE', x: 50, y: 35,
@@ -820,7 +914,20 @@ const modules = [
     id: 'software', code: 'MODULE 06', name: 'Software', shortName: 'SOFTWARE', x: 30, y: 85,
     goal: 'สามารถติดตั้ง ตั้งค่า อัปเดต ถอนการติดตั้ง และแก้ปัญหา Software ที่จำเป็นต่อการใช้งานคอมพิวเตอร์ได้',
     structure: 'Software Fundamentals → Application Installation → Configuration → Office/Productivity Software → Utilities → Updates → Uninstall → Troubleshooting → Practical Challenge',
-    skills: createSkills('software', ['Software Types', 'Installation', 'Compatibility / Dependency', 'Configuration', 'Office / Productivity', 'Utilities', 'Updates', 'Uninstall', 'License Basics', 'Program Errors', 'Repair / Reset / Reinstall', 'Post-Fix Test']),
+    skills: createSkills('software', [
+      { title: 'Software Types', subtopics: softwareSkillContent['Software Types'] },
+      { title: 'Installation', subtopics: softwareSkillContent['Installation'] },
+      { title: 'Compatibility / Dependency', subtopics: softwareSkillContent['Compatibility / Dependency'] },
+      { title: 'Configuration', subtopics: softwareSkillContent['Configuration'] },
+      { title: 'Office / Productivity', subtopics: softwareSkillContent['Office / Productivity'] },
+      { title: 'Utilities', subtopics: softwareSkillContent['Utilities'] },
+      { title: 'Updates', subtopics: softwareSkillContent['Updates'] },
+      { title: 'Uninstall', subtopics: softwareSkillContent['Uninstall'] },
+      { title: 'License Basics', subtopics: softwareSkillContent['License Basics'] },
+      { title: 'Program Errors', subtopics: softwareSkillContent['Program Errors'] },
+      { title: 'Repair / Reset / Reinstall', subtopics: softwareSkillContent['Repair / Reset / Reinstall'] },
+      { title: 'Post-Fix Test', subtopics: softwareSkillContent['Post-Fix Test'] }
+    ]),
     challenge: 'ติดตั้งและตั้งค่า Software ที่กำหนด และแก้ปัญหาเบื้องต้นเมื่อโปรแกรมเปิดไม่ได้ ทำงานผิดปกติ แจ้ง Error ต้องอัปเดต หรือต้องถอนและติดตั้งใหม่',
     kind: 'module'
   },
@@ -1043,11 +1150,11 @@ function detailedTopicsMarkup(topics) {
 function detailPage(item) {
   if (!item) return missingPage();
 
-  const isDetailedSkill = item.kind === 'skill' && (item.parent === 'hardware' || item.parent === 'assembly' || item.parent === 'maintenance' || item.parent === 'windows-installation' || item.parent === 'operating-system-driver');
+  const isDetailedSkill = item.kind === 'skill' && (item.parent === 'hardware' || item.parent === 'assembly' || item.parent === 'maintenance' || item.parent === 'windows-installation' || item.parent === 'operating-system-driver' || item.parent === 'software');
   let sections = '';
   let meta = item.code;
   let summary = item.goal || item.summary || `Skill in Module ${moduleById.get(item.parent)?.name || ''}`;
-  const detailSource = isDetailedSkill ? `CONTENT SOURCE // CONTENT PACK 0${item.parent === 'hardware' ? '1 — MODULE 1' : (item.parent === 'assembly' ? '2 — MODULE 2' : (item.parent === 'maintenance' ? '3 — MODULE 3' : (item.parent === 'windows-installation' ? '4 — MODULE 4' : '5 — MODULE 5')))}` : 'CONTENT SOURCE // MASTER_CONTENT.md';
+  const detailSource = isDetailedSkill ? `CONTENT SOURCE // CONTENT PACK 0${item.parent === 'hardware' ? '1 — MODULE 1' : (item.parent === 'assembly' ? '2 — MODULE 2' : (item.parent === 'maintenance' ? '3 — MODULE 3' : (item.parent === 'windows-installation' ? '4 — MODULE 4' : (item.parent === 'operating-system-driver' ? '5 — MODULE 5' : '6 — MODULE 6'))))}` : 'CONTENT SOURCE // MASTER_CONTENT.md';
 
   if (isDetailedSkill) {
     summary = item.subtopics[0]?.content || summary;
