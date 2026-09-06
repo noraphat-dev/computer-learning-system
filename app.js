@@ -191,6 +191,126 @@ const hardwareSkills = createSkills('hardware', [
   { id: 'printer', title: 'Printer', x: 49, y: 25, subtopics: hardwareSkillContent.printer }
 ]);
 
+const assemblySkillContent = {
+  'preparation': [
+    topic('Preparation', [
+      'ตรวจอุปกรณ์ให้ครบและตรวจ Compatibility เช่น CPU กับ Motherboard, RAM กับระบบ,',
+      'GPU กับ Case และ PSU กับกำลังไฟที่ต้องใช้'
+    ])
+  ],
+  'safety-esd': [
+    topic('Safety / ESD', [
+      'ปิดเครื่องและถอดไฟ จับอุปกรณ์บริเวณขอบ ระวังไฟฟ้าสถิต และไม่ฝืนใส่อุปกรณ์',
+      'หากตำแหน่งไม่ตรงให้หยุดตรวจ'
+    ])
+  ],
+  'components': [
+    topic('Components', [
+      'เตรียม CPU, Cooler, RAM, Storage, Motherboard, PSU, GPU, Case และสายต่าง ๆ'
+    ])
+  ],
+  'cpu': [
+    topic('CPU', [
+      'วาง CPU ให้ตรงเครื่องหมายบน Socket และล็อกกลไกให้ถูกต้อง'
+    ])
+  ],
+  'cooler': [
+    topic('Cooler', [
+      'ติดตั้ง Cooler ให้แน่นพอดี ใช้ Thermal Paste และต่อ CPU_FAN'
+    ])
+  ],
+  'ram': [
+    topic('RAM', [
+      'ใส่ RAM ลง Slot ที่ถูกต้องจน Lock'
+    ])
+  ],
+  'storage': [
+    topic('Storage', [
+      'ติดตั้ง M.2 หรือ SATA ตามชนิด Storage'
+    ])
+  ],
+  'motherboard': [
+    topic('Motherboard', [
+      'ตรวจ I/O Shield ถ้าจำเป็น ตรวจ Standoff แล้ววางและขัน Motherboard ให้ถูกตำแหน่ง'
+    ])
+  ],
+  'psu': [
+    topic('PSU', [
+      'ยึด PSU และจัดสายเพื่อเตรียมเชื่อมต่อ'
+    ])
+  ],
+  'gpu': [
+    topic('GPU', [
+      'ใส่ GPU ลง PCIe Slot ยึด Case และต่อ Power หากจำเป็น'
+    ])
+  ],
+  'power-connector': [
+    topic('Power Connector', [
+      'ต้องรู้จัก 24-pin Motherboard, CPU Power, GPU Power และ SATA Power'
+    ])
+  ],
+  'front-panel': [
+    topic('Front Panel', [
+      'ต่อ Power Switch, Reset Switch, Power LED และ HDD LED ตามคู่มือ Motherboard'
+    ])
+  ],
+  'cable-management': [
+    topic('Cable Management', [
+      'จัดสายไม่ให้ขวางพัดลมและ Airflow และไม่ดึง Connector จนตึง'
+    ])
+  ],
+  'pre-power-check': [
+    topic('Pre-Power Check', [
+      'ตรวจสายไฟ, 24-pin, CPU Power, RAM/GPU Lock, Cooler, Storage, Front',
+      'Panel, Monitor และตรวจว่าไม่มีสกรูหรือโลหะหลงอยู่'
+    ])
+  ],
+  'first-boot': [
+    topic('First Boot', [
+      'เปิดเครื่องและสังเกตพัดลม ไฟ/เสียง ภาพ และการเข้า BIOS/UEFI'
+    ])
+  ],
+  'bios-uefi': [
+    topic('BIOS / UEFI', [
+      'ตรวจ CPU, RAM, Storage และ Boot Device'
+    ])
+  ],
+  'post-build-verification': [
+    topic('Post-Build Verification', [
+      'หลังติดตั้ง Windows ตรวจ Device Manager, RAM, Storage, Network, USB, Audio',
+      'และ Display แล้วทดสอบจริง'
+    ])
+  ],
+  'no-boot': [
+    topic('ถ้าไม่ Boot', [
+      'ตรวจตามลำดับ **Power → PSU → 24-pin/CPU Power → RAM → GPU → Front Panel →',
+      'BIOS/UEFI → อุปกรณ์ทีละชิ้น**'
+    ])
+  ],
+};
+
+const assemblySkills = createSkills('assembly', [
+  { id: 'preparation', title: 'Preparation', x: 7, y: 8, subtopics: assemblySkillContent['preparation'] },
+  { id: 'safety-esd', title: 'Safety / ESD', x: 20, y: 8, subtopics: assemblySkillContent['safety-esd'] },
+  { id: 'components', title: 'Components', x: 33, y: 8, subtopics: assemblySkillContent['components'] },
+  { id: 'cpu', title: 'CPU', x: 46, y: 8, subtopics: assemblySkillContent['cpu'] },
+  { id: 'cooler', title: 'CPU Cooler', x: 59, y: 8, subtopics: assemblySkillContent['cooler'] },
+  { id: 'ram', title: 'RAM', x: 72, y: 8, subtopics: assemblySkillContent['ram'] },
+  { id: 'storage', title: 'Storage', x: 85, y: 8, subtopics: assemblySkillContent['storage'] },
+  { id: 'motherboard', title: 'Motherboard', x: 14, y: 17, subtopics: assemblySkillContent['motherboard'] },
+  { id: 'psu', title: 'PSU', x: 28, y: 17, subtopics: assemblySkillContent['psu'] },
+  { id: 'gpu', title: 'GPU', x: 42, y: 17, subtopics: assemblySkillContent['gpu'] },
+  { id: 'power-connector', title: 'Power Connector', x: 56, y: 17, subtopics: assemblySkillContent['power-connector'] },
+  { id: 'front-panel', title: 'Front Panel', x: 70, y: 17, subtopics: assemblySkillContent['front-panel'] },
+  { id: 'cable-management', title: 'Cable Management', x: 84, y: 17, subtopics: assemblySkillContent['cable-management'] },
+  { id: 'pre-power-check', title: 'Pre-Power Check', x: 22, y: 26, subtopics: assemblySkillContent['pre-power-check'] },
+  { id: 'first-boot', title: 'First Boot', x: 36, y: 26, subtopics: assemblySkillContent['first-boot'] },
+  { id: 'bios-uefi', title: 'BIOS / UEFI', x: 50, y: 26, subtopics: assemblySkillContent['bios-uefi'] },
+  { id: 'post-build-verification', title: 'Post-Build Verification', x: 64, y: 26, subtopics: assemblySkillContent['post-build-verification'] },
+  { id: 'no-boot', title: 'No Boot Troubleshooting', x: 78, y: 26, subtopics: assemblySkillContent['no-boot'] },
+]);
+
+
 const modules = [
   {
     id: 'hardware', code: 'MODULE 01', name: 'Computer Hardware', shortName: 'COMPUTER\nHARDWARE', x: 50, y: 35,
@@ -202,7 +322,7 @@ const modules = [
     id: 'assembly', code: 'MODULE 02', name: 'Computer Assembly', shortName: 'COMPUTER\nASSEMBLY', x: 77, y: 45,
     goal: 'สามารถถอดและประกอบคอมพิวเตอร์ได้อย่างถูกต้อง ปลอดภัย และเข้าใจว่าแต่ละชิ้นส่วนเชื่อมต่อกันอย่างไร',
     structure: 'Preparation → Components → Installation → Connection → First Boot → BIOS/UEFI → Verification → Practical Challenge',
-    skills: createSkills('assembly', ['Preparation', 'Safety / ESD', 'Components', 'CPU', 'CPU Cooler', 'RAM', 'Storage', 'Motherboard', 'PSU', 'GPU', 'Power Connector', 'Front Panel', 'Cable Management', 'Pre-Power Check', 'First Boot', 'BIOS / UEFI', 'Post-Build Verification', 'No Boot Troubleshooting']),
+    skills: assemblySkills,
     challenge: 'ประกอบคอมพิวเตอร์หนึ่งเครื่องจากชิ้นส่วนที่กำหนด แล้วอธิบายได้ว่าชิ้นส่วนแต่ละตัวคืออะไร ต่อเข้าที่ใด ทำไมต้องต่อแบบนั้น เปิดเครื่องแล้วควรตรวจอะไร และถ้าเปิดไม่ติดจะเริ่มตรวจจากตรงไหน',
     kind: 'module'
   },
@@ -457,15 +577,15 @@ function detailedTopicsMarkup(topics) {
 function detailPage(item) {
   if (!item) return missingPage();
 
-  const isHardwareSkill = item.kind === 'skill' && item.parent === 'hardware';
+  const isDetailedSkill = item.kind === 'skill' && (item.parent === 'hardware' || item.parent === 'assembly');
   let sections = '';
   let meta = item.code;
   let summary = item.goal || item.summary || `Skill in Module ${moduleById.get(item.parent)?.name || ''}`;
-  const detailSource = isHardwareSkill ? 'CONTENT SOURCE // CONTENT PACK 01 — MODULE 1' : 'CONTENT SOURCE // MASTER_CONTENT.md';
+  const detailSource = isDetailedSkill ? `CONTENT SOURCE // CONTENT PACK 0${item.parent === 'hardware' ? '1 — MODULE 1' : '2 — MODULE 2'}` : 'CONTENT SOURCE // MASTER_CONTENT.md';
 
-  if (isHardwareSkill) {
+  if (isDetailedSkill) {
     summary = item.subtopics[0]?.content || summary;
-    sections = `${sectionMarkup('01', 'Module', '<p>Computer Hardware</p>')}
+    sections = `${sectionMarkup('01', 'Module', `<p>${moduleById.get(item.parent)?.name}</p>`)}
       <section class="detail-section detail-topics-section">
         <h2><span>02 //</span> Subtopics & Detailed Content</h2>
         <div class="section-rule"></div>
