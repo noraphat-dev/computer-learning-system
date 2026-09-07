@@ -736,6 +736,109 @@ const operatingSystemSkillContent = {
 };
 
 
+const troubleshootingSkillContent = {
+  'Fundamentals': [
+    topic('Fundamentals', [
+      'เริ่มจากสิ่งง่าย เช่น Power, Cable, Connection และ Setting ก่อนจะไปถึงการเปลี่ยน Hardware',
+      '',
+      'เหตุผลคือสิ่งง่ายตรวจได้เร็ว ปลอดภัย และอาจเป็นสาเหตุจริง การข้ามไปเปลี่ยนอะไหล่ทันทีทำให้เสียเวลาและอาจสร้างปัญหาใหม่',
+    ].join('\n'))
+  ],
+  'Problem Identification': [
+    topic('Problem Identification', [
+      'ถาม:',
+      '- อาการคืออะไร?',
+      '- เกิดเมื่อไร?',
+      '- เกิดทุกครั้งหรือบางครั้ง?',
+      '- ก่อนเกิดปัญหามีการเปลี่ยนอะไรหรือไม่?',
+      '- มี Error Message หรือไม่?',
+      '',
+      'การระบุอาการให้ชัดช่วยไม่ให้เราวินิจฉัยจากคำว่า "เครื่องเสีย" ซึ่งกว้างจนแทบไม่มีประโยชน์',
+    ].join('\n'))
+  ],
+  'Information Gathering': [
+    topic('Information Gathering', [
+      'เก็บข้อมูล:',
+      '- Hardware',
+      '- Windows Version',
+      '- Driver',
+      '- Software',
+      '- Network',
+      '- Error Code',
+      '- Device Status',
+      '- สิ่งที่เพิ่งติดตั้ง/เปลี่ยน',
+    ].join('\n'))
+  ],
+  'Hypothesis / Diagnosis': [
+    topic('Hypothesis / Diagnosis', [
+      'ตั้งสมมติฐานจากหลักฐาน เช่น:',
+      '- สายหลวม',
+      '- RAM มีปัญหา',
+      '- Driver ผิดปกติ',
+      '- Storage ไม่ถูกตรวจพบ',
+      '- Network Configuration ผิด',
+      '',
+      'จากนั้นต้องเลือกการทดสอบที่สามารถแยกสมมติฐานได้',
+    ].join('\n'))
+  ],
+  'Testing / Isolation': [
+    topic('Testing / Isolation', [
+      'ใช้หลัก:',
+      '- เปลี่ยนทีละตัวแปร',
+      '- ใช้อุปกรณ์ที่รู้ว่าดี',
+      '- ทดลอง Port อื่น',
+      '- ทดลองเครื่องอื่น',
+      '- ถอดอุปกรณ์ที่ไม่จำเป็น',
+      '- ตรวจ BIOS/UEFI เมื่อเหมาะสม',
+      '',
+      'เหตุผลที่ต้องเปลี่ยนทีละตัวแปร เพราะถ้าเปลี่ยนหลายอย่างพร้อมกัน เราจะไม่รู้ว่าตัวไหนเป็นสาเหตุหรือเป็นตัวที่แก้ปัญหา',
+    ].join('\n'))
+  ],
+  'Hardware Troubleshooting': [
+    topic('Hardware Troubleshooting', [
+      'ลำดับพื้นฐาน:',
+      '',
+      '**Power → Cable → Connection → RAM → GPU → Storage → Motherboard/PSU**',
+      '',
+      'ลำดับนี้เป็นแนวทาง ไม่ใช่กฎตายตัว ต้องปรับตามอาการและหลักฐาน',
+    ].join('\n'))
+  ],
+  'Windows / Driver': [
+    topic('Windows / Driver', [
+      'ตรวจ Device Manager, Driver, Windows Update, Settings และ Error Message',
+      '',
+      'ใช้ Restart, Rollback หรือ Reinstall ตามกรณี และดูว่าปัญหาเริ่มหลังการ Update หรือเปลี่ยน Driver หรือไม่',
+    ].join('\n'))
+  ],
+  'Software': [
+    topic('Software', [
+      'ตรวจ:',
+      '**Error → Compatibility → Dependency → Configuration → Permission → Update → Repair → Reset → Reinstall**',
+      '',
+      'เริ่มจากวิธีที่กระทบน้อยก่อน',
+    ].join('\n'))
+  ],
+  'Network': [
+    topic('Network', [
+      'ใช้:',
+      '',
+      '**Adapter → Connection → IP → Subnet Mask → Gateway → DNS → Router → Internet**',
+    ].join('\n'))
+  ],
+  'Solution / Verification': [
+    topic('Solution / Verification', [
+      'หลังแก้ต้อง:',
+      '1. ทดสอบอาการเดิม',
+      '2. ตรวจ Error ใหม่',
+      '3. ตรวจระบบที่เกี่ยวข้อง',
+      '4. ทดสอบการใช้งานจริง',
+      '5. ยืนยันว่าไม่มีปัญหาใหม่',
+      '',
+      'คำว่า "หายแล้ว" ต้องมีหลักฐานรองรับ',
+    ].join('\n'))
+  ],
+};
+
 const softwareSkillContent = {
   'Software Types': [
     topic('Software Types', [
@@ -1147,7 +1250,18 @@ const modules = [
     id: 'troubleshooting', code: 'MODULE 08', name: 'Troubleshooting', shortName: 'TROUBLESHOOTING', x: 23, y: 45,
     goal: 'สามารถวิเคราะห์และแก้ปัญหาคอมพิวเตอร์อย่างเป็นระบบ โดยนำความรู้จาก Module 1–7 มาใช้ร่วมกัน',
     structure: 'Troubleshooting Fundamentals → Problem Identification → Information Gathering → Hypothesis & Diagnosis → Testing & Isolation → Hardware Troubleshooting → Windows & Driver Troubleshooting → Software Troubleshooting → Network Troubleshooting → Solution & Verification → Practical Challenge',
-    skills: createSkills('troubleshooting', ['Fundamentals', 'Problem Identification', 'Information Gathering', 'Hypothesis / Diagnosis', 'Testing / Isolation', 'Hardware Troubleshooting', 'Windows / Driver', 'Software', 'Network', 'Solution / Verification']),
+    skills: createSkills('troubleshooting', [
+      { title: 'Fundamentals', subtopics: troubleshootingSkillContent['Fundamentals'] },
+      { title: 'Problem Identification', subtopics: troubleshootingSkillContent['Problem Identification'] },
+      { title: 'Information Gathering', subtopics: troubleshootingSkillContent['Information Gathering'] },
+      { title: 'Hypothesis / Diagnosis', subtopics: troubleshootingSkillContent['Hypothesis / Diagnosis'] },
+      { title: 'Testing / Isolation', subtopics: troubleshootingSkillContent['Testing / Isolation'] },
+      { title: 'Hardware Troubleshooting', subtopics: troubleshootingSkillContent['Hardware Troubleshooting'] },
+      { title: 'Windows / Driver', subtopics: troubleshootingSkillContent['Windows / Driver'] },
+      { title: 'Software', subtopics: troubleshootingSkillContent['Software'] },
+      { title: 'Network', subtopics: troubleshootingSkillContent['Network'] },
+      { title: 'Solution / Verification', subtopics: troubleshootingSkillContent['Solution / Verification'] }
+    ]),
     principle: 'อย่าเดา → หาหลักฐาน → ทดสอบ → ตัดสาเหตุ → แก้ → ทดสอบอีกครั้ง',
     challenge: '1. PC เปิดไม่ติด  2. Windows Boot ไม่ได้  3. Device Manager มีอุปกรณ์ผิดปกติ  4. โปรแกรมเปิดไม่ได้  5. ต่อ Wi-Fi ได้แต่ Internet ไม่ได้  6. Final Challenge: ให้เครื่องคอมพิวเตอร์หนึ่งเครื่องที่มีปัญหาโดยไม่บอกสาเหตุ แล้ววิเคราะห์ตั้งแต่ต้นจนจบ พร้อมอธิบายเหตุผลของแต่ละขั้นตอน',
     extra: {
@@ -1165,7 +1279,115 @@ const modules = [
         { label: 'Internet ใช้ไม่ได้', steps: ['Physical Connection', 'Network Adapter', 'IP Address', 'Gateway', 'DNS', 'Router', 'Internet'] }
       ],
       hardware: ['เปิดไม่ติด: Power, PSU, Power Cable, 24-pin, CPU Power, Power Button, Motherboard', 'เปิดติดแต่ไม่มีภาพ: Monitor, Display Cable, Input Source, GPU, RAM, Display Output', 'เครื่องร้อน: CPU Cooler, Fan, Thermal Paste, Airflow, Dust'],
-      notes: ['ปัญหาโปรแกรมไม่ได้แปลว่า Software เป็นสาเหตุเสมอไป อาจมาจาก Windows, Driver, Hardware หรือ Network', 'ต้องแยกให้ออกระหว่าง Wi-Fi Connection มีปัญหา กับ Internet Connection มีปัญหา', 'Problem → Diagnosis → Solution → Test → Verify', 'หลังแก้ต้องตรวจว่า: อาการเดิมหายหรือไม่, Hardware ทำงานหรือไม่, Windows ทำงานหรือไม่, Software ทำงานหรือไม่, Network ทำงานหรือไม่, Restart แล้วปัญหากลับมาหรือไม่']
+      notes: ['ปัญหาโปรแกรมไม่ได้แปลว่า Software เป็นสาเหตุเสมอไป อาจมาจาก Windows, Driver, Hardware หรือ Network', 'ต้องแยกให้ออกระหว่าง Wi-Fi Connection มีปัญหา กับ Internet Connection มีปัญหา', 'Problem → Diagnosis → Solution → Test → Verify', 'หลังแก้ต้องตรวจว่า: อาการเดิมหายหรือไม่, Hardware ทำงานหรือไม่, Windows ทำงานหรือไม่, Software ทำงานหรือไม่, Network ทำงานหรือไม่, Restart แล้วปัญหากลับมาหรือไม่'],
+      cases: [
+        { title: 'PC เปิดไม่ติด', content: [
+          '### อาการ',
+          'กด Power แล้วเครื่องไม่มีอาการ หรือไม่มีพัดลม/ไฟตอบสนอง',
+          '',
+          '### Possible Causes',
+          'Power, PSU Switch, Power Cable, 24-pin, CPU Power, Front Panel หรือ PSU/Motherboard',
+          '',
+          '### วิธีตรวจ',
+          '**Power → PSU Switch → Power Cable → 24-pin → CPU Power → Front Panel Power Switch → PSU → Motherboard**',
+          '',
+          '### การตีความ',
+          'ถ้าไฟเข้าระบบแต่กดแล้วไม่ทำงาน อาจต้องตรวจ Front Panel หรือ PSU ต่อ ถ้าสายหลวมแล้วเสียบใหม่และเครื่องกลับมาได้ หลักฐานชี้ไปที่ Connection มากกว่าอะไหล่เสีย',
+          '',
+          '### Verification',
+          'กดเปิดซ้ำหลายครั้ง ตรวจ Boot และทดสอบการทำงานจริง',
+        ].join('\n') },
+        { title: 'เปิดเครื่องแต่ไม่มีภาพ', content: [
+          '### อาการ',
+          'เครื่องเปิด พัดลมทำงาน แต่ Monitor ขึ้น No Signal หรือไม่มีภาพ',
+          '',
+          '### Possible Causes',
+          'Monitor, Input Source, Display Cable, Port, GPU, RAM, BIOS/UEFI หรือ Graphics',
+          '',
+          '### วิธีตรวจ',
+          '**Monitor Power → Input → Display Cable → Port → GPU → RAM → BIOS/UEFI → Integrated Graphics ถ้ามี**',
+          '',
+          '### การตีความ',
+          'ถ้าสลับสายหรือ Input แล้วภาพกลับมา แสดงว่าปัญหาอยู่ที่เส้นทางการแสดงผล ไม่จำเป็นต้องเปลี่ยน GPU',
+          '',
+          '### Verification',
+          'เข้า Windows และทดสอบภาพ/Resolution/Refresh Rate',
+        ].join('\n') },
+        { title: 'Windows Boot ไม่ได้', content: [
+          '### อาการ',
+          'เปิดเครื่องได้แต่เข้า Windows ไม่สำเร็จ',
+          '',
+          '### Possible Causes',
+          'Storage Detection, Boot Order, Boot Configuration, Windows, Storage Health หรือ Hardware ที่เพิ่งเปลี่ยน',
+          '',
+          '### วิธีตรวจ',
+          '**Storage Detection → Boot Order → Boot Configuration → Windows Recovery → Storage Health → Hardware ที่เพิ่งเปลี่ยน**',
+          '',
+          '### การตีความ',
+          'ถ้า BIOS/UEFI ยังไม่เห็น Storage ควรตรวจ Hardware/Connection ก่อน เพราะ Windows ไม่สามารถแก้ปัญหา Drive ที่ BIOS ยังมองไม่เห็นได้',
+          '',
+          '### Verification',
+          'Boot เข้า Windows ได้และตรวจ Storage/Device Manager',
+        ].join('\n') },
+        { title: 'Hardware ใช้งานไม่ได้', content: [
+          '### อาการ',
+          'อุปกรณ์บางชิ้นทำงานไม่ได้ แม้ตัวเครื่องเปิดปกติ',
+          '',
+          '### วิธีตรวจ',
+          '**Connection → Power → Device Manager → Driver → Windows Settings → Port/เครื่องอื่น**',
+          '',
+          '### การตีความ',
+          'ถ้า Device Manager มี Error ให้ใช้ข้อมูลนั้นเป็นหลักฐานก่อนเปลี่ยน Hardware',
+          '',
+          '### Verification',
+          'อุปกรณ์ต้องทำงานจริง ไม่ใช่แค่หายจาก Error ใน Device Manager',
+        ].join('\n') },
+        { title: 'โปรแกรมเปิดไม่ได้', content: [
+          '### อาการ',
+          'กดเปิดแล้วไม่ขึ้น Crash หรือมี Error',
+          '',
+          '### วิธีตรวจ',
+          '**Error Message → Compatibility → Dependency → Update → Permission → Repair → Reset → Reinstall**',
+          '',
+          '### การตีความ',
+          'ถ้า Repair แล้วเปิดได้ แสดงว่าปัญหาอาจอยู่ที่ไฟล์หรือส่วนประกอบของโปรแกรม ไม่จำเป็นต้อง Reinstall ทันที',
+          '',
+          '### Verification',
+          'เปิดโปรแกรมและทดสอบ Function ที่เคยมีปัญหา',
+        ].join('\n') },
+        { title: 'Internet ใช้ไม่ได้', content: [
+          '### อาการ',
+          'Computer ต่อ Wi-Fi หรือสายได้ แต่เข้า Internet ไม่ได้',
+          '',
+          '### วิธีตรวจ',
+          '**Network Adapter → Connection → IP → Subnet Mask → Gateway → DNS → Router → Internet Service**',
+          '',
+          '### การตีความ',
+          'ถ้าได้ IP แต่ไม่มี Gateway อาจออกจาก Network ไม่ได้ ถ้า Gateway ใช้ได้แต่ชื่อเว็บไซต์แก้ไม่ได้ อาจต้องตรวจ DNS ถ้าหลายเครื่องใช้ Internet ไม่ได้พร้อมกัน ควรตรวจ Router/Internet Service ด้วย',
+          '',
+          '### Verification',
+          'ทดสอบการเชื่อมต่อและเปิด Website หรือใช้บริการ Network ที่ต้องการจริง',
+        ].join('\n') },
+      ],
+      finalChallenge: [
+        'รับ Computer ที่มีปัญหาโดยไม่รู้สาเหตุ แล้วทำ:',
+        '',
+        '1. รับอาการ',
+        '2. ระบุ Problem',
+        '3. เก็บข้อมูล',
+        '4. ตั้ง Hypothesis',
+        '5. เลือกวิธี Test',
+        '6. ทดสอบทีละสาเหตุ',
+        '7. แยกสาเหตุ',
+        '8. แก้ไข',
+        '9. ทดสอบอาการเดิมอีกครั้ง',
+        '10. ตรวจระบบส่วนอื่น',
+        '11. ยืนยันว่าเครื่องกลับมาใช้งานได้',
+        '',
+        'สิ่งที่ต้องแสดงไม่ใช่แค่ "แก้ได้" แต่ต้องอธิบายได้ว่า:',
+        '',
+        '**อาการคืออะไร → หลักฐานคืออะไร → คิดว่าสาเหตุคืออะไร → ทดสอบอย่างไร → ผลเป็นอย่างไร → แก้อย่างไร → ยืนยันผลอย่างไร**'
+      ].join('\n')
     },
     kind: 'module'
   }
@@ -1334,10 +1556,22 @@ function extraTroubleshootingMarkup(extra) {
   const flows = extra.flows.map((flow) => `<div class="detail-section"><p class="technical-label">${escapeHTML(flow.label)}</p><div class="section-rule"></div>${sequenceMarkup(flow.steps.join(' → '))}</div>`).join('');
   const hardware = listMarkup(extra.hardware);
   const notes = listMarkup(extra.notes);
+
+  const casesHtml = extra.cases ? `<div class="detail-topics">${extra.cases.map(c =>
+    `<section class="detail-topic">
+      <h3>${escapeHTML(c.title)}</h3>
+      <p>${escapeHTML(c.content).replace(/\n/g, '<br>')}</p>
+    </section>`
+  ).join('')}</div>` : '';
+
+  const finalChallengeHtml = extra.finalChallenge ? `<p>${escapeHTML(extra.finalChallenge).replace(/\n/g, '<br>')}</p>` : '';
+
   return `${sectionMarkup('05', 'การระบุปัญหาและเก็บข้อมูล', grouped)}
     <section class="detail-section"><h2><span>06 //</span> ลำดับการวิเคราะห์ตัวอย่าง</h2><div class="section-rule"></div><div class="detail-sections" style="margin-top:0">${flows}</div></section>
     ${sectionMarkup('07', 'Hardware Troubleshooting', hardware)}
-    ${sectionMarkup('08', 'Solution & Verification', notes)}`;
+    ${sectionMarkup('08', 'Solution & Verification', notes)}
+    ${casesHtml ? sectionMarkup('09', 'Practical Troubleshooting Cases', casesHtml, 'detail-topics-section') : ''}
+    ${finalChallengeHtml ? sectionMarkup('10', 'Final Practical Challenge', finalChallengeHtml) : ''}`;
 }
 
 function detailedTopicsMarkup(topics) {
@@ -1353,11 +1587,11 @@ function detailedTopicsMarkup(topics) {
 function detailPage(item) {
   if (!item) return missingPage();
 
-  const isDetailedSkill = item.kind === 'skill' && (item.parent === 'hardware' || item.parent === 'assembly' || item.parent === 'maintenance' || item.parent === 'windows-installation' || item.parent === 'operating-system-driver' || item.parent === 'software' || item.parent === 'network');
+  const isDetailedSkill = item.kind === 'skill' && (item.parent === 'hardware' || item.parent === 'assembly' || item.parent === 'maintenance' || item.parent === 'windows-installation' || item.parent === 'operating-system-driver' || item.parent === 'software' || item.parent === 'network' || item.parent === 'troubleshooting');
   let sections = '';
   let meta = item.code;
   let summary = item.goal || item.summary || `Skill in Module ${moduleById.get(item.parent)?.name || ''}`;
-  const detailSource = isDetailedSkill ? `CONTENT SOURCE // CONTENT PACK 0${item.parent === 'hardware' ? '1 — MODULE 1' : (item.parent === 'assembly' ? '2 — MODULE 2' : (item.parent === 'maintenance' ? '3 — MODULE 3' : (item.parent === 'windows-installation' ? '4 — MODULE 4' : (item.parent === 'operating-system-driver' ? '5 — MODULE 5' : (item.parent === 'software' ? '6 — MODULE 6' : '7 — MODULE 7')))))}` : 'CONTENT SOURCE // MASTER_CONTENT.md';
+  const detailSource = isDetailedSkill ? `CONTENT SOURCE // CONTENT PACK 0${item.parent === 'hardware' ? '1 — MODULE 1' : (item.parent === 'assembly' ? '2 — MODULE 2' : (item.parent === 'maintenance' ? '3 — MODULE 3' : (item.parent === 'windows-installation' ? '4 — MODULE 4' : (item.parent === 'operating-system-driver' ? '5 — MODULE 5' : (item.parent === 'software' ? '6 — MODULE 6' : (item.parent === 'network' ? '7 — MODULE 7' : '8 — MODULE 8'))))))}` : 'CONTENT SOURCE // MASTER_CONTENT.md';
 
   if (isDetailedSkill) {
     summary = item.subtopics[0]?.content || summary;
