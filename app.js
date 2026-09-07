@@ -935,7 +935,210 @@ const modules = [
     id: 'network', code: 'MODULE 07', name: 'Network', shortName: 'NETWORK', x: 13, y: 64,
     goal: 'เข้าใจการเชื่อมต่อเครือข่าย สามารถตั้งค่า ตรวจสอบ แก้ปัญหา และใช้งานการแชร์ทรัพยากรในระบบเครือข่ายได้',
     structure: 'Network Fundamentals → LAN & Internet → Ethernet → Wi-Fi → Network Devices → IP Address & MAC Address → Network Configuration → File & Printer Sharing → Network Troubleshooting → Network Verification → Practical Challenge',
-    skills: createSkills('network', ['Network', 'LAN / Internet', 'Ethernet', 'Wi-Fi', 'Network Devices', 'ภาพการไหลของข้อมูลแบบง่าย', 'IP Address', 'Subnet Mask', 'Default Gateway', 'DNS', 'DHCP', 'Static IP', 'MAC Address', 'Network Configuration', 'File Sharing', 'Printer Sharing', 'Troubleshooting', 'กรณี Wi-Fi ต่อได้แต่ Internet ไม่ได้', 'Verification']),
+    skills: createSkills('network', [
+      {
+        title: 'Network',
+        subtopics: [
+          topic('Network', [
+            'Network คือการเชื่อมต่ออุปกรณ์เพื่อสื่อสาร แลกเปลี่ยนข้อมูล และใช้ทรัพยากรร่วมกัน'
+          ].join('\n'))
+        ]
+      },
+      {
+        title: 'LAN / Internet',
+        subtopics: [
+          topic('LAN / Internet', [
+            'LAN คือเครือข่ายภายในพื้นที่ เช่น บ้านหรือห้องเรียน ส่วน Internet เชื่อมต่อเครือข่ายต่าง ๆ เข้าด้วยกัน',
+            '',
+            'ดังนั้น "ต่อ Wi-Fi ได้" ไม่ได้แปลว่า "มี Internet" เสมอไป เพราะ Computer อาจเชื่อม Router ได้ แต่ Router อาจไม่มีทางออกไป Internet'
+          ].join('\n'))
+        ]
+      },
+      {
+        title: 'Ethernet',
+        subtopics: [
+          topic('Ethernet', [
+            'การเชื่อมต่อ Network ผ่านสาย ตรวจ Cable, Port, Link Status และ Adapter'
+          ].join('\n'))
+        ]
+      },
+      {
+        title: 'Wi-Fi',
+        subtopics: [
+          topic('Wi-Fi', [
+            'ตรวจ Wi-Fi, SSID, Password, Signal, Adapter และ Router/Access Point'
+          ].join('\n'))
+        ]
+      },
+      {
+        title: 'Network Devices',
+        subtopics: [
+          topic('Network Devices', [
+            '- **Router:** เชื่อมและส่ง Traffic ระหว่าง Network',
+            '- **Switch:** เชื่อมอุปกรณ์ใน Network เดียวกัน',
+            '- **Access Point:** ให้บริการ Wi-Fi',
+            '- **Network Adapter:** ทำให้ Computer เชื่อม Network ได้'
+          ].join('\n'))
+        ]
+      },
+      {
+        title: 'ภาพการไหลของข้อมูลแบบง่าย',
+        subtopics: [
+          topic('ภาพการไหลของข้อมูลแบบง่าย', [
+            '**Computer → Network Adapter → Switch/Access Point → Router/Gateway → Internet → Server**',
+            '',
+            'เมื่อข้อมูลตอบกลับ จะเดินทางย้อนกลับมาที่ Computer',
+            '',
+            'การเข้าใจเส้นทางนี้ช่วยให้รู้ว่าถ้าเสียตรงไหนควรตรวจจุดใดก่อน'
+          ].join('\n'))
+        ]
+      },
+      {
+        title: 'IP Address',
+        subtopics: [
+          topic('IP Address แบบเข้าใจจริง', [
+            'IP Address เปรียบเหมือน "ที่อยู่" ของอุปกรณ์ใน Network เพื่อให้อุปกรณ์รู้ว่าจะส่งข้อมูลไปหาใคร',
+            '',
+            'ตัวอย่างในบ้าน:',
+            '- Computer: `192.168.1.20`',
+            '- Phone: `192.168.1.21`',
+            '- Router/Gateway: `192.168.1.1`',
+            '',
+            'อุปกรณ์ทั้งสามอยู่ใน Network เดียวกันได้ตาม Subnet Mask ที่กำหนด'
+          ].join('\n'))
+        ]
+      },
+      {
+        title: 'Subnet Mask',
+        subtopics: [
+          topic('Subnet Mask', [
+            'Subnet Mask ช่วยบอกว่า IP ส่วนไหนใช้ระบุ Network และส่วนไหนใช้ระบุอุปกรณ์ใน Network นั้น',
+            '',
+            'ตัวอย่าง `255.255.255.0` หรือ `/24` ในเครือข่ายแบบทั่วไป หมายความว่าอุปกรณ์ที่อยู่ในช่วง Network เดียวกันจะมีส่วน Network เหมือนกัน และเลขท้ายใช้แยกอุปกรณ์',
+            '',
+            'ไม่จำเป็นต้องท่องเลขอย่างเดียว แต่ต้องเข้าใจว่า **Subnet Mask ช่วยตัดสินว่าเป้าหมายอยู่ Network เดียวกันหรือควรส่งผ่าน Gateway**'
+          ].join('\n'))
+        ]
+      },
+      {
+        title: 'Default Gateway',
+        subtopics: [
+          topic('Default Gateway', [
+            'Gateway คือจุดที่ Computer ใช้ส่งข้อมูลออกจาก Network ของตัวเองไปยัง Network อื่น',
+            '',
+            'เช่น Computer ต้องการเข้า Internet มักส่งข้อมูลไปที่ Router ซึ่งทำหน้าที่เป็น Default Gateway',
+            '',
+            'ถ้า IP ของ Computer ถูกต้องแต่ Gateway ผิดหรือไม่มี อาจคุยกับอุปกรณ์ใน Network เดียวกันได้ แต่ไป Network อื่นไม่ได้'
+          ].join('\n'))
+        ]
+      },
+      {
+        title: 'DNS',
+        subtopics: [
+          topic('DNS', [
+            'DNS ช่วยแปลงชื่อ Domain ที่มนุษย์อ่านง่าย เช่น `example.com` ให้เป็นข้อมูลที่ใช้ค้นหา Server',
+            '',
+            'จึงเป็นไปได้ว่า:',
+            '- Ping ไป IP ได้',
+            '- แต่เปิดเว็บไซต์ด้วยชื่อไม่ได้',
+            '',
+            'ในกรณีนี้ DNS อาจเป็นหนึ่งในจุดที่ต้องตรวจ'
+          ].join('\n'))
+        ]
+      },
+      {
+        title: 'DHCP',
+        subtopics: [
+          topic('DHCP', [
+            'DHCP เป็นระบบที่ช่วยแจกค่าการตั้งค่า Network ให้เครื่องอัตโนมัติ เช่น IP Address, Subnet Mask, Gateway และ DNS',
+            '',
+            'ข้อดีคือผู้ใช้ไม่ต้องกรอกค่าเองทุกเครื่อง และลดโอกาสกำหนด IP ซ้ำ'
+          ].join('\n'))
+        ]
+      },
+      {
+        title: 'Static IP',
+        subtopics: [
+          topic('Static IP', [
+            'Static IP คือการกำหนดค่า IP เอง ต้องกำหนดให้ถูกทั้ง IP, Subnet Mask, Gateway และ DNS ตาม Network ที่ใช้งาน',
+            '',
+            'ถ้ากำหนดผิดอาจเกิด IP ซ้ำ, ติดต่อ Gateway ไม่ได้ หรือออก Internet ไม่ได้'
+          ].join('\n'))
+        ]
+      },
+      {
+        title: 'MAC Address',
+        subtopics: [
+          topic('MAC Address', [
+            'MAC Address เป็น Address ของ Network Interface ในระดับ Link Layer โดย Computer หนึ่งเครื่องอาจมีหลาย Interface และแต่ละ Interface อาจมี MAC ของตัวเอง'
+          ].join('\n'))
+        ]
+      },
+      {
+        title: 'Network Configuration',
+        subtopics: [
+          topic('Network Configuration', [
+            'จำความสัมพันธ์นี้:',
+            '',
+            '**IP = ที่อยู่เครื่อง → Subnet Mask = ขอบเขต Network → Gateway = ทางออกไป Network อื่น → DNS = ช่วยค้นหาที่อยู่จากชื่อ**',
+            '',
+            'DHCP มักแจกค่าทั้งหมดให้อัตโนมัติ ส่วน Static IP ต้องกำหนดเอง'
+          ].join('\n'))
+        ]
+      },
+      {
+        title: 'File Sharing',
+        subtopics: [
+          topic('File Sharing', [
+            'ทำให้ Computer อื่นเข้าถึง Folder ผ่าน Network ได้ ต้องตั้ง Sharing และ Permission ให้ถูกต้อง'
+          ].join('\n'))
+        ]
+      },
+      {
+        title: 'Printer Sharing',
+        subtopics: [
+          topic('Printer Sharing', [
+            'แชร์ Printer ผ่าน Network โดยตรวจ Printer, Sharing, Permission, Network และ Driver'
+          ].join('\n'))
+        ]
+      },
+      {
+        title: 'Troubleshooting',
+        subtopics: [
+          topic('Troubleshooting', [
+            'ใช้ลำดับ:',
+            '',
+            '**Adapter → Connection → IP → Gateway → DNS → Router → Internet**'
+          ].join('\n'))
+        ]
+      },
+      {
+        title: 'กรณี Wi-Fi ต่อได้แต่ Internet ไม่ได้',
+        subtopics: [
+          topic('กรณี Wi-Fi ต่อได้แต่ Internet ไม่ได้', [
+            '1. ตรวจ Adapter',
+            '2. ตรวจ SSID/Connection',
+            '3. ตรวจ IP',
+            '4. ตรวจ Subnet Mask',
+            '5. ตรวจ Gateway',
+            '6. ทดสอบการติดต่อภายใน Network',
+            '7. ตรวจ DNS',
+            '8. ตรวจ Router',
+            '9. ทดสอบ Internet',
+            '',
+            'ลำดับนี้ช่วยแยกปัญหาจากระดับเครื่องไปยังเครือข่ายภายนอก แทนการเดาสุ่ม'
+          ].join('\n'))
+        ]
+      },
+      {
+        title: 'Verification',
+        subtopics: [
+          topic('Verification', [
+            'ตรวจ Connection, IP, Subnet Mask, Gateway และ DNS แล้วทดสอบ Network, Website หรือ File/Printer Sharing ตามกรณี'
+          ].join('\n'))
+        ]
+      }
+    ]),
     principle: 'Connect → Configure → Communicate → Troubleshoot → Verify',
     challenge: 'กรณีเครื่องเชื่อมต่อ Wi-Fi ได้แต่ใช้งาน Internet ไม่ได้ ให้ตรวจสอบตั้งแต่: Network Adapter → Connection → IP Address → Gateway → DNS → Router → Internet → Verify',
     kind: 'module'
@@ -1150,11 +1353,11 @@ function detailedTopicsMarkup(topics) {
 function detailPage(item) {
   if (!item) return missingPage();
 
-  const isDetailedSkill = item.kind === 'skill' && (item.parent === 'hardware' || item.parent === 'assembly' || item.parent === 'maintenance' || item.parent === 'windows-installation' || item.parent === 'operating-system-driver' || item.parent === 'software');
+  const isDetailedSkill = item.kind === 'skill' && (item.parent === 'hardware' || item.parent === 'assembly' || item.parent === 'maintenance' || item.parent === 'windows-installation' || item.parent === 'operating-system-driver' || item.parent === 'software' || item.parent === 'network');
   let sections = '';
   let meta = item.code;
   let summary = item.goal || item.summary || `Skill in Module ${moduleById.get(item.parent)?.name || ''}`;
-  const detailSource = isDetailedSkill ? `CONTENT SOURCE // CONTENT PACK 0${item.parent === 'hardware' ? '1 — MODULE 1' : (item.parent === 'assembly' ? '2 — MODULE 2' : (item.parent === 'maintenance' ? '3 — MODULE 3' : (item.parent === 'windows-installation' ? '4 — MODULE 4' : (item.parent === 'operating-system-driver' ? '5 — MODULE 5' : '6 — MODULE 6'))))}` : 'CONTENT SOURCE // MASTER_CONTENT.md';
+  const detailSource = isDetailedSkill ? `CONTENT SOURCE // CONTENT PACK 0${item.parent === 'hardware' ? '1 — MODULE 1' : (item.parent === 'assembly' ? '2 — MODULE 2' : (item.parent === 'maintenance' ? '3 — MODULE 3' : (item.parent === 'windows-installation' ? '4 — MODULE 4' : (item.parent === 'operating-system-driver' ? '5 — MODULE 5' : (item.parent === 'software' ? '6 — MODULE 6' : '7 — MODULE 7')))))}` : 'CONTENT SOURCE // MASTER_CONTENT.md';
 
   if (isDetailedSkill) {
     summary = item.subtopics[0]?.content || summary;
