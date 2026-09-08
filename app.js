@@ -1020,7 +1020,7 @@ const modules = [
     kind: 'module'
   },
   {
-    id: 'software', code: 'MODULE 06', name: 'Software', shortName: 'SOFTWARE', x: 30, y: 85,
+    id: 'software', code: 'MODULE 07', name: 'Software', shortName: 'SOFTWARE', x: 30, y: 85,
     goal: 'สามารถติดตั้ง ตั้งค่า อัปเดต ถอนการติดตั้ง และแก้ปัญหา Software ที่จำเป็นต่อการใช้งานคอมพิวเตอร์ได้',
     structure: 'Software Fundamentals → Application Installation → Configuration → Office/Productivity Software → Utilities → Updates → Uninstall → Troubleshooting → Practical Challenge',
     skills: createSkills('software', [
@@ -1041,7 +1041,7 @@ const modules = [
     kind: 'module'
   },
   {
-    id: 'network', code: 'MODULE 07', name: 'Network', shortName: 'NETWORK', x: 13, y: 64,
+    id: 'network', code: 'MODULE 08', name: 'Network', shortName: 'NETWORK', x: 13, y: 64,
     goal: 'เข้าใจการเชื่อมต่อเครือข่าย สามารถตั้งค่า ตรวจสอบ แก้ปัญหา และใช้งานการแชร์ทรัพยากรในระบบเครือข่ายได้',
     structure: 'Network Fundamentals → LAN & Internet → Ethernet → Wi-Fi → Network Devices → IP Address & MAC Address → Network Configuration → File & Printer Sharing → Network Troubleshooting → Network Verification → Practical Challenge',
     skills: createSkills('network', [
@@ -1253,7 +1253,7 @@ const modules = [
     kind: 'module'
   },
   {
-    id: 'troubleshooting', code: 'MODULE 08', name: 'Troubleshooting', shortName: 'TROUBLESHOOTING', x: 23, y: 45,
+    id: 'troubleshooting', code: 'MODULE 09', name: 'Troubleshooting', shortName: 'TROUBLESHOOTING', x: 23, y: 45,
     goal: 'สามารถวิเคราะห์และแก้ปัญหาคอมพิวเตอร์อย่างเป็นระบบ โดยนำความรู้จาก Module 1–7 มาใช้ร่วมกัน',
     structure: 'Troubleshooting Fundamentals → Problem Identification → Information Gathering → Hypothesis & Diagnosis → Testing & Isolation → Hardware Troubleshooting → Windows & Driver Troubleshooting → Software Troubleshooting → Network Troubleshooting → Solution & Verification → Practical Challenge',
     skills: createSkills('troubleshooting', [
@@ -1603,7 +1603,7 @@ function detailPage(item) {
   let sections = '';
   let meta = item.code;
   let summary = item.goal || item.summary || `Skill in Module ${moduleById.get(item.parent)?.name || ''}`;
-  const detailSource = isDetailedSkill ? `CONTENT SOURCE // CONTENT PACK ${item.parent === 'work-based' ? '10' : '0'}${item.parent === 'hardware' ? '1 — MODULE 1' : (item.parent === 'assembly' ? '2 — MODULE 2' : (item.parent === 'maintenance' ? '3 — MODULE 3' : (item.parent === 'windows-installation' ? '4 — MODULE 4' : (item.parent === 'operating-system-driver' ? '5 — MODULE 5' : (item.parent === 'software' || item.parent === 'dual-boot' ? '6 — MODULE 6' : (item.parent === 'network' ? '7 — MODULE 7' : (item.parent === 'work-based' ? ' — MODULE 10' : '8 — MODULE 8')))))))}` : 'CONTENT SOURCE // MASTER_CONTENT.md';
+  const detailSource = isDetailedSkill ? `CONTENT SOURCE // CONTENT PACK ${item.parent === 'work-based' ? '10' : '0'}${item.parent === 'hardware' ? '1 — MODULE 1' : (item.parent === 'assembly' ? '2 — MODULE 2' : (item.parent === 'maintenance' ? '3 — MODULE 3' : (item.parent === 'windows-installation' ? '4 — MODULE 4' : (item.parent === 'operating-system-driver' ? '5 — MODULE 5' : (item.parent === 'dual-boot' ? '6 — MODULE 6' : (item.parent === 'software' ? '7 — MODULE 7' : (item.parent === 'network' ? '8 — MODULE 8' : (item.parent === 'work-based' ? ' — MODULE 10' : '9 — MODULE 9'))))))))}` : 'CONTENT SOURCE // MASTER_CONTENT.md';
 
   if (isDetailedSkill) {
     summary = item.subtopics[0]?.content || summary;
