@@ -932,6 +932,265 @@ const softwareSkillContent = {
   ],
 };
 
+const dualBootSkillContent = {
+  'partition-planning': [
+    topic('Partition คืออะไร?', [
+      'Partition คือการแบ่งพื้นที่ของฮาร์ดดิสก์หรือ SSD ออกเป็นส่วน ๆ เพื่อให้ระบบปฏิบัติการและข้อมูลใช้งานพื้นที่แต่ละส่วนได้อย่างเป็นระบบ',
+      '',
+      'ในการทำ Dual Boot เราต้องจัดพื้นที่ให้ Windows และ Linux สามารถติดตั้งแยกกันได้',
+      '',
+      'ตัวอย่างแนวคิด:',
+      '',
+      'SSD 512 GB',
+      '- Windows',
+      '- EFI System Partition',
+      '- Linux',
+      '- พื้นที่ข้อมูล / Recovery'
+    ].join('\n')),
+    topic('สิ่งที่ต้องตรวจสอบก่อนแบ่ง Partition', [
+      '- ความจุของ SSD/HDD',
+      '- พื้นที่ว่างที่เหลือ',
+      '- Partition ที่ Windows ใช้อยู่',
+      '- Recovery Partition',
+      '- รูปแบบดิสก์ เช่น GPT',
+      '- ระบบ Boot เช่น UEFI',
+      '- ข้อมูลสำคัญที่ต้องสำรอง',
+      '',
+      'หาก Windows ใช้พื้นที่เต็มดิสก์ ต้องลดขนาด Partition ของ Windows (Shrink) เพื่อสร้างพื้นที่ว่างสำหรับ Linux'
+    ].join('\n')),
+    topic('ข้อควรระวัง', [
+      'การลบหรือปรับขนาด Partition ผิดตัวอาจทำให้ข้อมูลหรือระบบปฏิบัติการเสียหาย ดังนั้นต้องตรวจสอบชื่อและขนาด Partition ก่อนยืนยันทุกครั้ง',
+      '',
+      'หากเครื่องใช้ BitLocker ควรตรวจสอบและสำรอง BitLocker Recovery Key ก่อนดำเนินการ'
+    ].join('\n'))
+  ],
+  'install-os': [
+    topic('ลำดับการทำงานโดยทั่วไป', [
+      'Windows',
+      '→ สำรองข้อมูล',
+      '→ เตรียมพื้นที่ว่าง',
+      '→ สร้าง Linux Bootable USB',
+      '→ Boot จาก USB',
+      '→ ติดตั้ง Linux',
+      '→ Restart',
+      '→ ตรวจสอบ Dual Boot',
+      '',
+      'โดยทั่วไป หาก Windows ติดตั้งอยู่แล้ว สามารถติดตั้ง Linux ในพื้นที่ว่างที่เตรียมไว้ได้ ระบบติดตั้ง Linux บางรุ่นมีตัวเลือกสำหรับติดตั้ง Linux ควบคู่กับ Windows'
+    ].join('\n')),
+    topic('ระหว่างติดตั้ง', [
+      'ต้องตรวจสอบให้แน่ใจว่าเลือกพื้นที่สำหรับ Linux ถูกต้อง',
+      '',
+      'ไม่ควรเลือกตัวเลือกที่มีความหมายว่า Erase disk / ลบดิสก์ทั้งหมด เพราะจะลบข้อมูลและระบบเดิมบนดิสก์'
+    ].join('\n')),
+    topic('ผลลัพธ์ที่ต้องการ', [
+      '- Windows ใช้งานได้',
+      '- Linux ใช้งานได้',
+      '- สามารถเลือก OS ตอนเปิดเครื่องได้'
+    ].join('\n'))
+  ],
+  'grub': [
+    topic('Boot Loader คืออะไร?', [
+      'Boot Loader คือโปรแกรมที่ทำงานในช่วงเริ่มเปิดเครื่อง เพื่อเลือกและเริ่มต้นระบบปฏิบัติการ',
+      '',
+      'สำหรับ Linux ที่ใช้ Ubuntu โดยทั่วไปจะใช้ GRUB 2 เป็น Boot Loader',
+      '',
+      'เมื่อ GRUB ตรวจพบ Windows ด้วย จะสามารถแสดงตัวเลือก เช่น:',
+      '',
+      'GRUB',
+      '- Ubuntu',
+      '- Windows Boot Manager',
+      '',
+      'ผู้ใช้จึงสามารถเลือกว่าจะเข้า Windows หรือ Linux'
+    ].join('\n')),
+    topic('หน้าที่ของ GRUB', [
+      '1. แสดงรายการ OS',
+      '2. รับคำสั่งจากผู้ใช้',
+      '3. เริ่มต้น OS ที่เลือก',
+      '4. กำหนด OS เริ่มต้น หากผู้ใช้ไม่เลือก'
+    ].join('\n')),
+    topic('Boot Order', [
+      'เครื่องยังมี Boot Order ใน BIOS/UEFI ซึ่งกำหนดว่า Boot Manager หรืออุปกรณ์ใดจะถูกเรียกก่อน',
+      '',
+      'หากเครื่องไม่แสดง GRUB ควรตรวจสอบ Boot Order ด้วย'
+    ].join('\n'))
+  ],
+  'usage': [
+    topic('ทดสอบ Windows', [
+      'เปิดเครื่อง',
+      '→ GRUB',
+      '→ เลือก Windows',
+      '→ Windows เปิดสำเร็จ',
+      '',
+      'ตรวจสอบว่า:',
+      '- เข้าหน้า Windows ได้',
+      '- Keyboard/Mouse ทำงาน',
+      '- Storage มองเห็นตามปกติ',
+      '- ระบบไม่แสดงข้อผิดพลาดผิดปกติ'
+    ].join('\n')),
+    topic('ทดสอบ Linux', [
+      'เปิดเครื่อง',
+      '→ GRUB',
+      '→ เลือก Linux',
+      '→ Linux เปิดสำเร็จ',
+      '',
+      'ตรวจสอบว่า:',
+      '- เข้า Desktop ได้',
+      '- Keyboard/Mouse ทำงาน',
+      '- Network ทำงาน',
+      '- Storage ทำงาน',
+      '- สามารถ Restart กลับไปเลือก Windows ได้'
+    ].join('\n')),
+    topic('การทดสอบที่ถือว่าสำเร็จ', [
+      'Windows → Restart → Linux',
+      'Linux → Restart → Windows',
+      '',
+      'ต้องสามารถสลับระบบได้จริงทั้งสองทิศทาง'
+    ].join('\n'))
+  ],
+  'troubleshooting': [
+    topic('กรณี 1: เปิดเครื่องแล้วเข้า Windows ทันที', [
+      'สาเหตุที่เป็นไปได้:',
+      '- Boot Order ชี้ไป Windows Boot Manager',
+      '- GRUB ไม่ได้ถูกเลือกเป็น Boot Loader หลัก',
+      '',
+      'แนวทางตรวจสอบ:',
+      '1. เข้า BIOS/UEFI',
+      '2. ตรวจ Boot Order',
+      '3. ตรวจว่ามี Linux/GRUB หรือ Ubuntu Boot Entry หรือไม่',
+      '4. ตั้งค่า Boot Order ให้ถูกต้อง'
+    ].join('\n')),
+    topic('กรณี 2: GRUB ไม่แสดง Windows', [
+      'อาจเกิดจาก GRUB ไม่พบ Windows Boot Entry หรือการตั้งค่า Boot Loader มีปัญหา',
+      '',
+      'ควรตรวจสอบ:',
+      '- Windows ยังอยู่ใน Partition หรือไม่',
+      '- Windows Boot Manager ยังอยู่หรือไม่',
+      '- GRUB ตรวจพบ Windows หรือไม่'
+    ].join('\n')),
+    topic('กรณี 3: Linux Boot ไม่ได้', [
+      'ตรวจสอบตามลำดับ:',
+      'Boot Order',
+      '→ GRUB',
+      '→ Linux Partition',
+      '→ Boot Loader',
+      '',
+      'หาก GRUB มีปัญหา สามารถใช้เครื่องมือสำหรับซ่อม GRUB หรือ Boot-Repair จาก Live USB ได้ในบางกรณี'
+    ].join('\n')),
+    topic('กรณี 4: Windows Boot ไม่ได้หลังแบ่ง Partition', [
+      'หยุดแก้ไขแบบสุ่มก่อน แล้วตรวจสอบ:',
+      '- Partition ของ Windows',
+      '- Windows Boot Manager',
+      '- UEFI/Boot Mode',
+      '- Recovery Environment',
+      '',
+      'ใช้ Backup/Recovery ที่เตรียมไว้หากจำเป็น'
+    ].join('\n'))
+  ],
+  'time-management': [
+    topic('ก่อนเริ่ม', [
+      '- เตรียมอุปกรณ์ให้พร้อม',
+      '- สำรองข้อมูล',
+      '- ตรวจสอบพื้นที่',
+      '- เตรียม USB',
+      '- ตรวจสอบ Boot Mode'
+    ].join('\n')),
+    topic('ระหว่างทำ', [
+      '- ทำตามลำดับ',
+      '- อ่านข้อความบนหน้าจอก่อนยืนยัน',
+      '- ตรวจสอบ Partition ทุกครั้ง',
+      '- ไม่ยกเลิกกระบวนการติดตั้งโดยไม่จำเป็น'
+    ].join('\n')),
+    topic('หลังทำ', [
+      '- ทดสอบ Windows',
+      '- ทดสอบ Linux',
+      '- ทดสอบ GRUB',
+      '- ตรวจสอบ Network และอุปกรณ์พื้นฐาน',
+      '- เก็บพื้นที่และอุปกรณ์ให้เรียบร้อย',
+      '',
+      'งานที่เสร็จเร็วแต่ Boot ไม่ได้ ไม่ถือว่างานสำเร็จ'
+    ].join('\n'))
+  ]
+};
+
+const workBasedSkillContent = {
+  'job-count': [
+    topic('จำนวนงานที่ทำ', [
+      'บันทึกจำนวนงานที่ได้รับและงานที่ดำเนินการ เช่น',
+      '',
+      '- จำนวนงานทั้งหมด',
+      '- จำนวนงานที่ทำเสร็จ',
+      '- จำนวนงานที่ยังไม่เสร็จ',
+      '- ประเภทของงาน',
+      '- วันที่ทำงาน',
+      '',
+      'เป้าหมายคือสามารถติดตามและตรวจสอบผลงานของตนเองได้'
+    ].join('\n'))
+  ],
+  'quality': [
+    topic('คุณภาพงาน / แก้ปัญหาจริง', [
+      'งานต้องเน้นผลลัพธ์ ไม่ใช่เพียงทำงานให้เสร็จ',
+      '',
+      'ลำดับการทำงาน:',
+      '',
+      '**ตรวจสอบ → วิเคราะห์ → แก้ไข → ทดสอบ → ตรวจผล**',
+      '',
+      'ตัวอย่างงาน:',
+      '- ตรวจและซ่อมคอมพิวเตอร์',
+      '- ติดตั้ง Windows หรือ Linux',
+      '- ติดตั้ง/แก้ไข Driver',
+      '- ติดตั้ง Software',
+      '- ตรวจสอบ Network',
+      '- บำรุงรักษาหรืออัปเกรด Hardware',
+      '',
+      'หลังทำงานต้องทดสอบว่าอุปกรณ์หรือระบบกลับมาใช้งานได้ตามต้องการ'
+    ].join('\n'))
+  ],
+  'satisfaction': [
+    topic('ความพึงพอใจผู้ใช้', [
+      'หลังทำงานควรตรวจสอบว่าผู้ใช้สามารถใช้งานได้ตามความต้องการ',
+      '',
+      'ควร:',
+      '- อธิบายสิ่งที่ทำ',
+      '- ให้ผู้ใช้ทดลองใช้งาน',
+      '- รับฟังปัญหาหรือข้อเสนอแนะ',
+      '- ตรวจสอบว่าปัญหาได้รับการแก้ไข',
+      '',
+      'สามารถบันทึกผลความพึงพอใจของผู้ใช้ไว้เป็นหลักฐานประกอบการประเมิน'
+    ].join('\n'))
+  ],
+  'responsibility': [
+    topic('เวลา / ความรับผิดชอบ', [
+      'การทำงานจริงต้องรับผิดชอบงานและเวลาที่ได้รับมอบหมาย',
+      '',
+      'ควร:',
+      '- วางแผนก่อนเริ่มงาน',
+      '- ทำงานตามลำดับ',
+      '- ตรงต่อเวลา',
+      '- แจ้งเมื่อเกิดปัญหาหรืองานล่าช้า',
+      '- ตรวจงานก่อนส่ง',
+      '- ไม่ทิ้งงานโดยไม่แจ้งผู้รับผิดชอบ'
+    ].join('\n'))
+  ],
+  'communication': [
+    topic('ก่อนทำงาน', [
+      'สอบถาม:',
+      '- ปัญหาหรือความต้องการคืออะไร?',
+      '- ปัญหาเกิดขึ้นเมื่อใด?',
+      '- มีการเปลี่ยนแปลงหรือแก้ไขอะไรมาก่อนหรือไม่?'
+    ].join('\n')),
+    topic('ระหว่างทำงาน', [
+      'อธิบายสิ่งที่กำลังตรวจสอบหรือดำเนินการเมื่อจำเป็น'
+    ].join('\n')),
+    topic('หลังทำงาน', [
+      'อธิบาย:',
+      '- พบปัญหาอะไร',
+      '- แก้ไขอย่างไร',
+      '- ผลการทดสอบเป็นอย่างไร',
+      '- ผู้ใช้ควรดูแลหรือใช้งานต่ออย่างไร'
+    ].join('\n'))
+  ]
+};
+
 const modules = [
   {
     id: 'hardware', code: 'MODULE 01', name: 'Computer Hardware', shortName: 'COMPUTER\nHARDWARE', x: 50, y: 35,
@@ -1015,8 +1274,17 @@ const modules = [
   },
   {
     id: 'dual-boot', code: 'MODULE 06', name: 'Dual Boot Windows + Linux', shortName: 'DUAL BOOT\nWINDOWS + LINUX', x: 40, y: 92,
-    goal: 'Placeholder goal',
-    skills: [],
+    goal: 'เรียนรู้และปฏิบัติการติดตั้ง Windows และ Linux ให้อยู่ในเครื่องเดียวกัน โดยแบ่งพื้นที่ดิสก์อย่างเหมาะสม ตั้งค่า Boot Loader ให้สามารถเลือก OS ตอนเปิดเครื่อง ทดสอบการใช้งานทั้งสองระบบ และแก้ไขปัญหา Boot เบื้องต้นได้',
+    structure: 'วางแผน Partition → ติดตั้ง 2 OS สำเร็จ → ตั้งค่า Boot Loader (GRUB) → เข้าใช้งานได้ทั้ง 2 ระบบ → แก้ปัญหา Boot → เวลา / ความเรียบร้อย → Practical Challenge',
+    skills: createSkills('dual-boot', [
+      { id: 'dual-boot-partition-planning', title: 'วางแผน Partition', subtopics: dualBootSkillContent['partition-planning'] },
+      { id: 'dual-boot-install-os', title: 'ติดตั้ง 2 OS สำเร็จ', subtopics: dualBootSkillContent['install-os'] },
+      { id: 'dual-boot-grub', title: 'ตั้งค่า Boot Loader (GRUB)', subtopics: dualBootSkillContent['grub'] },
+      { id: 'dual-boot-usage', title: 'เข้าใช้งานได้ทั้ง 2 ระบบ', subtopics: dualBootSkillContent['usage'] },
+      { id: 'dual-boot-troubleshooting', title: 'แก้ปัญหา Boot', subtopics: dualBootSkillContent['troubleshooting'] },
+      { id: 'dual-boot-time-management', title: 'เวลา / ความเรียบร้อย', subtopics: dualBootSkillContent['time-management'] }
+    ]),
+    challenge: 'ติดตั้ง Windows + Linux แบบ Dual Boot บนเครื่องเดียวกันให้สามารถใช้งานได้จริง',
     kind: 'module'
   },
   {
@@ -1399,8 +1667,16 @@ const modules = [
   },
   {
     id: 'work-based', code: 'MODULE 10', name: 'งานบริการจริง (Work-based)', shortName: 'WORK-BASED', x: 35, y: 35,
-    goal: 'Placeholder goal',
-    skills: [],
+    goal: 'ใช้ความรู้และทักษะจาก Modules 1–9 ไปปฏิบัติงานจริงหรือสถานการณ์จำลอง พร้อมบันทึกผลงานและหลักฐานการทำงาน เพื่อประเมินความสามารถในการทำงานจริง',
+    structure: 'รับงาน → สอบถาม → ตรวจสอบ → วิเคราะห์ → แก้ไข → ทดสอบ → ส่งมอบ → บันทึกผล',
+    skills: createSkills('work-based', [
+      { id: 'work-based-job-count', title: 'จำนวนงานที่ทำ', subtopics: workBasedSkillContent['job-count'] },
+      { id: 'work-based-quality', title: 'คุณภาพงาน / แก้ปัญหาจริง', subtopics: workBasedSkillContent['quality'] },
+      { id: 'work-based-satisfaction', title: 'ความพึงพอใจผู้ใช้', subtopics: workBasedSkillContent['satisfaction'] },
+      { id: 'work-based-responsibility', title: 'เวลา / ความรับผิดชอบ', subtopics: workBasedSkillContent['responsibility'] },
+      { id: 'work-based-communication', title: 'การสื่อสาร / บริการ', subtopics: workBasedSkillContent['communication'] }
+    ]),
+    challenge: 'รับงานคอมพิวเตอร์จริงหรือสถานการณ์จำลอง แล้วบันทึกการทำงานตั้งแต่รับงานจนถึงส่งมอบ',
     kind: 'module'
   }
 ];
