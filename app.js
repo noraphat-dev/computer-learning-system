@@ -1014,6 +1014,12 @@ const modules = [
     kind: 'module'
   },
   {
+    id: 'dual-boot', code: 'MODULE 06', name: 'Dual Boot Windows + Linux', shortName: 'DUAL BOOT\nWINDOWS + LINUX', x: 40, y: 92,
+    goal: 'Placeholder goal',
+    skills: [],
+    kind: 'module'
+  },
+  {
     id: 'software', code: 'MODULE 06', name: 'Software', shortName: 'SOFTWARE', x: 30, y: 85,
     goal: 'สามารถติดตั้ง ตั้งค่า อัปเดต ถอนการติดตั้ง และแก้ปัญหา Software ที่จำเป็นต่อการใช้งานคอมพิวเตอร์ได้',
     structure: 'Software Fundamentals → Application Installation → Configuration → Office/Productivity Software → Utilities → Updates → Uninstall → Troubleshooting → Practical Challenge',
@@ -1390,6 +1396,12 @@ const modules = [
       ].join('\n')
     },
     kind: 'module'
+  },
+  {
+    id: 'work-based', code: 'MODULE 10', name: 'งานบริการจริง (Work-based)', shortName: 'WORK-BASED', x: 35, y: 35,
+    goal: 'Placeholder goal',
+    skills: [],
+    kind: 'module'
   }
 ];
 
@@ -1513,7 +1525,7 @@ function treePage() {
   return `<section class="page tree-page" aria-labelledby="tree-title">
     <header class="tree-heading">
       <div>
-        <p class="eyebrow">SYSTEM MAP // 08 MODULES</p>
+        <p class="eyebrow">SYSTEM MAP // 10 MODULES</p>
         <h1 class="page-title" id="tree-title">Skill Tree</h1>
       </div>
       <p>เลือก Module เพื่อเปิดเส้นทางการเรียนรู้ หรือเลือก Skill ภายใน Computer Hardware เพื่ออ่านรายละเอียดตามข้อมูลที่จัดเตรียมไว้</p>
@@ -1587,11 +1599,11 @@ function detailedTopicsMarkup(topics) {
 function detailPage(item) {
   if (!item) return missingPage();
 
-  const isDetailedSkill = item.kind === 'skill' && (item.parent === 'hardware' || item.parent === 'assembly' || item.parent === 'maintenance' || item.parent === 'windows-installation' || item.parent === 'operating-system-driver' || item.parent === 'software' || item.parent === 'network' || item.parent === 'troubleshooting');
+  const isDetailedSkill = item.kind === 'skill' && (item.parent === 'hardware' || item.parent === 'assembly' || item.parent === 'maintenance' || item.parent === 'windows-installation' || item.parent === 'operating-system-driver' || item.parent === 'software' || item.parent === 'network' || item.parent === 'troubleshooting' || item.parent === 'dual-boot' || item.parent === 'work-based');
   let sections = '';
   let meta = item.code;
   let summary = item.goal || item.summary || `Skill in Module ${moduleById.get(item.parent)?.name || ''}`;
-  const detailSource = isDetailedSkill ? `CONTENT SOURCE // CONTENT PACK 0${item.parent === 'hardware' ? '1 — MODULE 1' : (item.parent === 'assembly' ? '2 — MODULE 2' : (item.parent === 'maintenance' ? '3 — MODULE 3' : (item.parent === 'windows-installation' ? '4 — MODULE 4' : (item.parent === 'operating-system-driver' ? '5 — MODULE 5' : (item.parent === 'software' ? '6 — MODULE 6' : (item.parent === 'network' ? '7 — MODULE 7' : '8 — MODULE 8'))))))}` : 'CONTENT SOURCE // MASTER_CONTENT.md';
+  const detailSource = isDetailedSkill ? `CONTENT SOURCE // CONTENT PACK ${item.parent === 'work-based' ? '10' : '0'}${item.parent === 'hardware' ? '1 — MODULE 1' : (item.parent === 'assembly' ? '2 — MODULE 2' : (item.parent === 'maintenance' ? '3 — MODULE 3' : (item.parent === 'windows-installation' ? '4 — MODULE 4' : (item.parent === 'operating-system-driver' ? '5 — MODULE 5' : (item.parent === 'software' || item.parent === 'dual-boot' ? '6 — MODULE 6' : (item.parent === 'network' ? '7 — MODULE 7' : (item.parent === 'work-based' ? ' — MODULE 10' : '8 — MODULE 8')))))))}` : 'CONTENT SOURCE // MASTER_CONTENT.md';
 
   if (isDetailedSkill) {
     summary = item.subtopics[0]?.content || summary;
